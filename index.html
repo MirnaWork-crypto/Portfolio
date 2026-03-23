@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdou Mirna - Portfolio BTS SIO SLAM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --gray-dark: #F5F5F5;
+            --gray: #E8E8E8;
+            --gray-light: #CCCCCC;
+            --gray-lighter: #666666;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            overflow-x: hidden;
+            cursor: default;
+        }
+
+        /* Grain Effect */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 30px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            animation: navSlide 1s ease-out;
+        }
+
+        @keyframes navSlide {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: var(--black);
+            cursor: pointer;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 50px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-lighter);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--black);
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--black);
+        }
+
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Page System */
+        .page {
+            display: none;
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 150px 80px;
+            min-height: 100vh;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(50px, 8vw, 80px);
+            font-weight: 700;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 60%;
+            height: 2px;
+            background: var(--black);
+        }
+
+        /* ACCUEIL PAGE */
+        .accueil-hero {
+            min-height: 100vh;
+            padding: 0 80px;
+            padding-top: 150px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(50px, 8vw, 90px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 30px;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            line-height: 1.9;
+            color: var(--gray-lighter);
+            margin-bottom: 40px;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 700px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: all 0.6s ease;
+        }
+
+        .hero-image:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 50px;
+            background: var(--black);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+        }
+
+        .cta-button:hover {
+            background: var(--gray-lighter);
+        }
+
+        /* BTS SIO PAGE - MODERN DESIGN */
+        .bts-intro {
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto 100px;
+        }
+
+        .bts-intro-content {
+            padding: 60px;
+            background: var(--gray-dark);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .bts-intro-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .bts-options-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .bts-option-card {
+            background: var(--white);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            padding: 60px 50px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bts-option-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--black);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .bts-option-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border-color: var(--black);
+        }
+
+        .bts-option-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .bts-option-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--black);
+            color: var(--white);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .bts-option-card.slam .bts-option-badge {
+            background: var(--black);
+        }
+
+        .bts-option-card.sisr .bts-option-badge {
+            background: var(--gray-lighter);
+        }
+
+        .bts-option-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--black);
+        }
+
+        .bts-option-card .subtitle {
+            font-size: 14px;
+            color: var(--gray-lighter);
+            margin-bottom: 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .bts-option-card p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--gray-lighter);
+            margin-bottom: 30px;
+        }
+
+        .bts-competences {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--gray);
+        }
+
+        .bts-competences h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+
+        .bts-competences ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .bts-competences li {
+            font-size: 15px;
+            color: var(--gray-lighter);
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .bts-competences li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--black);
+            font-weight: 700;
+        }
+
+        /* PARCOURS PAGE - NEW MODERN DESIGN */
+        .parcours-intro {
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto 100px;
+        }
+
+        .parcours-intro-content {
+            padding: 60px;
+            background: var(--gray-dark);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .parcours-cards-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .parcours-card {
+            background: var(--white);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            padding: 0;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .parcours-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--black);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.5s ease;
+        }
+
+        .parcours-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border-color: var(--black);
+        }
+
+        .parcours-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .parcours-card-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: all 0.6s ease;
+        }
+
+        .parcours-card:hover .parcours-card-image {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .parcours-card-content {
+            padding: 50px 40px;
+        }
+
+        .parcours-number {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gray-lighter);
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .parcours-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+
+        .parcours-card p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--gray-lighter);
+            margin-bottom: 40px;
+        }
+
+        .parcours-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .parcours-btn {
+            padding: 12px 25px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            border: 2px solid var(--black);
+        }
+
+        .parcours-btn-primary {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .parcours-btn-primary:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .parcours-btn-secondary {
+            background: transparent;
+            color: var(--black);
+        }
+
+        .parcours-btn-secondary:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        /* PROJET PAGE - MODERN DESIGN */
+        .projet-intro {
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto 100px;
+        }
+
+        .projet-intro h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .projet-intro h3 {
+            font-size: 24px;
+            color: var(--gray-lighter);
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .projet-intro p {
+            font-size: 18px;
+            line-height: 1.9;
+            color: var(--gray-lighter);
+        }
+
+        .projets-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .projet-card {
+            background: var(--white);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .projet-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--black);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .projet-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border-color: var(--black);
+        }
+
+        .projet-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .projet-card-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: all 0.6s ease;
+        }
+
+        .projet-card:hover .projet-card-image {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .projet-card-content {
+            padding: 40px 35px;
+        }
+
+        .projet-tag {
+            display: inline-block;
+            padding: 6px 15px;
+            background: var(--gray-dark);
+            color: var(--black);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .projet-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--black);
+        }
+
+        .projet-card p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--gray-lighter);
+            margin-bottom: 30px;
+        }
+
+        .projet-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+
+        .tech-badge {
+            padding: 5px 12px;
+            background: var(--white);
+            border: 1px solid var(--gray);
+            font-size: 12px;
+            color: var(--gray-lighter);
+            font-weight: 500;
+        }
+
+        .projet-link {
+            display: inline-block;
+            padding: 12px 25px;
+            background: var(--black);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            border: 2px solid var(--black);
+        }
+
+        .projet-link:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        /* VEILLE PAGE - NEW DESIGN */
+        .veille-intro {
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto 100px;
+        }
+
+        .veille-intro-content {
+            padding: 60px;
+            background: var(--gray-dark);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .veille-cards-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .veille-card {
+            background: var(--white);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            padding: 60px 50px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .veille-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--black);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .veille-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border-color: var(--black);
+        }
+
+        .veille-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .veille-card-icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 30px;
+            color: var(--black);
+            transition: all 0.5s ease;
+        }
+
+        .veille-card:hover .veille-card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .veille-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+
+        .veille-card p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--gray-lighter);
+            margin-bottom: 40px;
+        }
+
+        .veille-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .veille-btn {
+            flex: 1;
+            padding: 15px 30px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+        }
+
+        .veille-btn-primary {
+            background: var(--black);
+            color: var(--white);
+            border: 2px solid var(--black);
+        }
+
+        .veille-btn-primary:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .veille-btn-secondary {
+            background: transparent;
+            color: var(--black);
+            border: 2px solid var(--black);
+        }
+
+        .veille-btn-secondary:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        /* CONTACT PAGE */
+        .contact-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            background: var(--white);
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--black);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--gray-lighter);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 80px;
+            background: var(--gray-dark);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-info p {
+            font-size: 14px;
+            color: var(--gray-lighter);
+            margin-bottom: 5px;
+        }
+
+        .footer-info strong {
+            color: var(--black);
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: var(--gray-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            nav, section, footer { padding-left: 40px; padding-right: 40px; }
+            .accueil-hero { grid-template-columns: 1fr; }
+            .hero-image { height: 500px; }
+            .veille-cards-container { grid-template-columns: 1fr; gap: 40px; }
+            .parcours-cards-container { grid-template-columns: 1fr; gap: 40px; }
+            .bts-options-container { grid-template-columns: 1fr; gap: 40px; }
+            .projets-grid { grid-template-columns: 1fr; gap: 40px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .form-row { grid-template-columns: 1fr; }
+            .footer-content { flex-direction: column; gap: 30px; text-align: center; }
+            .veille-intro-content { padding: 40px 30px; }
+            .veille-card { padding: 40px 30px; }
+            .veille-buttons { flex-direction: column; }
+            .parcours-intro-content { padding: 40px 30px; }
+            .parcours-card-content { padding: 40px 30px; }
+            .parcours-buttons { flex-direction: column; }
+            .bts-intro-content { padding: 40px 30px; }
+            .bts-option-card { padding: 40px 30px; }
+            .projet-card-content { padding: 30px 25px; }
+        }
+
+
+        .parcours-card-image-contain {
+    object-fit: contain !important;
+    background: var(--gray-dark);
+    padding: 20px;
+}
+
+.parcours-card:hover .parcours-card-image-contain {
+    transform: none;
+}
+
+
+
+.projet-card-image-contain {
+    object-fit: contain !important;
+    background: var(--gray-dark);
+    padding: 20px;
+}
+
+.projet-card:hover .projet-card-image-contain {
+    transform: none;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo" onclick="showPage('accueil')">mirnawork</div>
+        <ul class="nav-menu">
+            <li><a onclick="showPage('accueil')" class="nav-link active">Accueil</a></li>
+            <li><a onclick="showPage('bts-sio')" class="nav-link">BTS SIO</a></li>
+            <li><a onclick="showPage('parcours')" class="nav-link">Parcours professionnel</a></li>
+            <li><a onclick="showPage('projet')" class="nav-link">Projets</a></li>
+            <li><a onclick="showPage('veille')" class="nav-link">Veilles</a></li>
+            <li><a onclick="showPage('contact')" class="nav-link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- PAGE ACCUEIL -->
+    <div id="accueil" class="page active">
+        <div class="accueil-hero">
+            <div class="hero-content">
+                <h1>Bienvenue dans mon portfolio</h1>
+                <p>
+                    Je m'appelle Abdou Mirna, j'ai 18 ans. Actuellement je suis en deuxième année de BTS SIO (Services Informatiques aux Organisations), option SLAM (Solutions Logicielles et Applications Métiers), que je prépare au sein de l'établissement Ensemble Sainte-Marie, situé à Joinville-le-Pont.
+                </p>
+                <p>
+                    Cette formation me permet d'acquérir des compétences solides en développement de logiciels et en gestion de projets informatiques.
+                </p>
+                <a href="#" class="cta-button" onclick="showPage('projet')">Découvrir mes projets</a><br><br><br><br><br>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800" alt="Abdou Mirna">
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE BTS SIO -->
+    <div id="bts-sio" class="page">
+        <section>
+            <h1 class="section-title">BTS SIO</h1>
+            
+            <div class="bts-intro">
+                <div class="bts-intro-content">
+                    <h2>BTS SIO - Services Informatiques aux Organisations</h2>
+                    <p style="font-size: 18px; line-height: 1.9; color: var(--gray-lighter);">
+                        Diplôme de niveau <strong>Bac +2</strong> formant des <strong>techniciens en informatique</strong>. Il se décline en <strong>deux spécialités</strong> : SLAM (développement et maintenance d'applications) et SISR (administration des réseaux et systèmes).
+                    </p>
+                </div>
+            </div>
+
+            <div class="bts-options-container">
+                <!-- SLAM Card -->
+                <div class="bts-option-card slam">
+                    <span class="bts-option-badge">Ma spécialité</span>
+                    <h3>SLAM</h3>
+                    <p class="subtitle">Solutions Logicielles et Applications Métiers</p>
+                    <p>
+                        La spécialité SLAM forme des développeurs capables de concevoir, développer et maintenir des applications informatiques. Les étudiants apprennent la programmation orientée objet, la gestion de bases de données, le développement web et mobile, ainsi que les méthodologies de gestion de projets.
+                    </p>
+                    
+                    <div class="bts-competences">
+                        <h4>Compétences acquises</h4>
+                        <ul>
+                            <li>Développement html css js</li>
+                            <li>Conception et administration de bases de données</li>
+                            <li>Programmation orientée objet</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- SISR Card -->
+                <div class="bts-option-card sisr">
+                    <span class="bts-option-badge">Autre option</span>
+                    <h3>SISR</h3>
+                    <p class="subtitle">Solutions d'Infrastructure, Systèmes et Réseaux</p>
+                    <p>
+                        La spécialité SISR forme des techniciens capables d'administrer et de sécuriser les infrastructures réseaux et systèmes. Les étudiants apprennent à installer, configurer et maintenir les équipements réseaux, gérer les serveurs et assurer la cybersécurité des systèmes d'information.
+                    </p>
+                    
+                    <div class="bts-competences">
+                        <h4>Compétences acquises</h4>
+                        <ul>
+                            <li>Administration des systèmes et réseaux</li>
+                            <li>Support et maintenance informatique</li>
+                            <li>Gestion des incidents et problèmes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p><strong>Portfolio</strong></p>
+                    <p>Chaque projet représente mon investissement, mes compétences et ma volonté de progresser.</p>
+                    <p style="margin-top: 20px;"><strong>Contact:</strong> +33 7 45 93 27 97</p>
+                    <p><strong>Mail:</strong> abdoumirna756@gmail.com</p>
+                </div>
+                <p class="footer-text">© 2026 Abdou Mirna - Portfolio</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- PAGE PARCOURS PROFESSIONNEL -->
+    <div id="parcours" class="page">
+        <section>
+            <h1 class="section-title">Parcours professionnel</h1>
+            
+            <div class="parcours-intro">
+                <div class="parcours-intro-content">
+                    <p style="font-size: 18px; line-height: 1.9; color: var(--gray-lighter);">
+                        Découvrez mon parcours professionnel à travers mes expériences, qui montrent mes compétences et mon évolution dans le développement logiciel et la gestion de projets informatiques.
+                    </p>
+                </div>
+            </div>
+
+            <div class="parcours-cards-container">
+<!-- Stage ARCV Card - AVEC LIEN -->
+<div class="parcours-card">
+    <a href="Projets/Stage_01.html" style="display: block; text-decoration: none; color: inherit;">
+        <img class="parcours-card-image parcours-card-image-contain" src="https://horizons-cdn.hostinger.com/d5564037-9b22-4e1e-9f0c-2fd1f8c09fe6/dced77d3ca786b1fde1f08072b0ac283.png" alt="ARCV">
+    </a>
+    <div class="parcours-card-content">
+        <p class="parcours-number">Stage 01</p>
+        <h3>ACRCV</h3>
+        <p>
+            J'ai obtenu mon stage chez l'ACRCV (Association Culturelle des ressortissants Comoriens de Villiers-sur-Marne) grâce à un ami à mon père qui m'a recommandé. Pendant mon stage, j'ai travaillé sur la création et la refonte du site web pour améliorer son design et son utilisation ce qui m'a permis d'intégrer une structure engagée dans la communauté.
+        </p>
+        <div class="parcours-buttons">
+            <a href="#" class="parcours-btn parcours-btn-primary">Note de synthèse</a>
+        </div>
+    </div>
+</div>
+
+<!-- Stage Restaurant Card -->
+<div class="parcours-card">
+    <a href="Projets/Stage_02.html" style="display: block; text-decoration: none; color: inherit;">
+        <img class="parcours-card-image" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800" alt="Restaurant">
+    </a>
+    <div class="parcours-card-content">
+        <p class="parcours-number">Stage 02</p>
+        <h3>Robigus Restaurant</h3>
+        <p>
+            J'ai réalisé mon second stage chez Robigus Restaurant grâce à un camarade de classe, dont le père est le propriétaire. Durant ce stage, j'ai conçu un site web pour le restaurant dans le but d'améliorer son image et sa présence sur internet.
+        </p>
+        <div class="parcours-buttons">
+            <a href="#" class="parcours-btn parcours-btn-primary">Note de synthèse</a>
+            <a href="#" class="parcours-btn parcours-btn-secondary">Cahier des charges</a>
+        </div>
+    </div>
+</div>
+
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p><strong>Portfolio</strong></p>
+                    <p>Chaque projet représente mon investissement, mes compétences et ma volonté de progresser.</p>
+                    <p style="margin-top: 20px;"><strong>Contact:</strong> +33 7 45 93 27 97</p>
+                    <p><strong>Mail:</strong> abdoumirna756@gmail.com</p>
+                </div>
+                <p class="footer-text">© 2026 Abdou Mirna - Portfolio</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- PAGE PROJET -->
+    <div id="projet" class="page">
+        <section>
+            <h1 class="section-title">Projets</h1>
+            
+            <div class="projet-intro">
+                <h2>Bienvenue</h2>
+                <h3>Présentations de mes projets</h3>
+                <p>
+                    Pendant mon BTS, j'ai réalisé plusieurs projets qui montrent que je sais appliquer ce que j'apprends en cours dans des situations concrètes. Ces projets m'ont permis d'améliorer mes compétences, de travailler en équipe et d'obtenir des résultats réels. Ils m'ont aussi aidé à prendre confiance, à relever des défis et à m'impliquer sérieusement dans le travail.
+                </p>
+            </div>
+
+            <div class="projets-grid">
+                <!-- Projet 1: Maison des Ligues -->
+                <div class="projet-card">
+            <img class="projet-card-image projet-card-image-contain" src="https://romguillon4.wordpress.com/wp-content/uploads/2013/09/mdl.png" alt="Maison des Ligues">
+                    <div class="projet-card-content">
+                        <span class="projet-tag">Projet 01</span>
+                        <h3>Maison des Ligues</h3>
+                        <p>
+                            Développement d'une plateforme de gestion pour la Maison des Ligues, permettant la coordination des activités sportives et la gestion des membres.
+                        </p>
+                        <div class="projet-tech">
+                            <span class="tech-badge">HTML</span>
+                            <span class="tech-badge">CSS</span>
+                        </div>
+                        <a href="#" class="projet-link">Voir le projet</a>
+                    </div>
+                </div>
+
+                <!-- Projet 2: Aventures Alpines -->
+                <div class="projet-card">
+                    <img class="projet-card-image" src="https://jeromeobiols.com/wordpress/wp-content/uploads/photo-montagne-vallee-blanche-chamonix-mont-blanc.jpg" alt="Aventures Alpines">
+                    <div class="projet-card-content">
+                        <span class="projet-tag">Projet 02</span>
+                        <h3>Aventures Alpines</h3>
+                        <p>
+                            Création d'un site web pour une agence de voyages spécialisée dans les aventures en montagne, avec système de réservation intégré.
+                        </p>
+                        <div class="projet-tech">
+                            <span class="tech-badge">React </span>
+                            <span class="tech-badge">Node Js</span>
+                            <span class="tech-badge">JavaScript</span>
+                            <span class="tech-badge">MySQL</span>
+                        </div>
+                        <a href="#" class="projet-link">Voir le projet</a>
+                    </div>
+                </div>
+
+                <!-- Projet 3: JavaStock -->
+                <div class="projet-card">
+                    <img class="projet-card-image" src="https://e-solution.com/storage/component/24-10/wsNrsLA4PCx9lInWWMXyWKj7TonC31zsQwXX2oQA.png" alt="JavaStock">
+                    <div class="projet-card-content">
+                        <span class="projet-tag">Projet 03</span>
+                        <h3>JavaStock</h3>
+                        <p>
+                            Application de gestion de stock développée en Java, permettant le suivi des inventaires, des commandes et des fournisseurs en temps réel.
+                        </p>
+                        <div class="projet-tech">
+                            <span class="tech-badge">Java</span>
+                            <span class="tech-badge">PostGresSQL</span>
+                            <span class="tech-badge">JavaSwing</span>
+                        </div>
+                        <a href="#" class="projet-link">Voir le projet</a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p><strong>Portfolio</strong></p>
+                    <p>Chaque projet représente mon investissement, mes compétences et ma volonté de progresser.</p>
+                    <p style="margin-top: 20px;"><strong>Contact:</strong> +33 7 45 93 27 97</p>
+                    <p><strong>Mail:</strong> abdoumirna756@gmail.com</p>
+                </div>
+                <p class="footer-text">© 2026 Abdou Mirna - Portfolio</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- PAGE VEILLE -->
+    <div id="veille" class="page">
+        <section>
+            <h1 class="section-title">Veilles</h1>
+
+            <div class="veille-intro">
+                <div class="veille-intro-content">
+                    <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 36px; margin-bottom: 30px;">Qu'est-ce qu'une veille ?</h2>
+                    <p style="font-size: 18px; line-height: 1.9; color: var(--gray-lighter);">
+                        Une veille consiste à collecter, analyser et surveiller en continu des informations stratégiques dans un domaine spécifique, afin de rester informé des évolutions, tendances ou menaces qui pourraient avoir un impact. Elle permet d'anticiper les changements, d'identifier des opportunités et de réagir face à des risques potentiels. La veille peut être technologique, économique, concurrentielle, juridique ou encore cyber, selon les besoins et les objectifs. Son importance réside dans sa capacité à éclairer la prise de décision, qu'il s'agisse d'innover, d'améliorer des produits ou services, de se positionner face à des concurrents ou de protéger ses actifs stratégiques.
+                    </p>
+                </div>
+            </div>
+
+            <div class="veille-cards-container">
+                <!-- Veille Technologique Card -->
+                <div class="veille-card">
+                    <div class="veille-card-inner">
+                        <div class="veille-card-icon">
+                            <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="20" y="25" width="60" height="45" rx="5"/>
+                                <rect x="15" y="20" width="70" height="50" rx="5"/>
+                                <path d="M35 85 L35 75 L65 75 L65 85"/>
+                                <path d="M30 85 L70 85"/>
+                                <circle cx="50" cy="50" r="8"/>
+                            </svg>
+                        </div>
+                        <h3>Veille Technologique</h3>
+                        <p>Suivez les dernières innovations, technologies émergentes et tendances du développement logiciel pour rester à la pointe.</p>
+                        <div class="veille-buttons">
+                            <a href="#" class="veille-btn veille-btn-primary">Document PDF</a>
+                            <a href="#" class="veille-btn veille-btn-secondary">Consulter</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Veille Cybersécurité Card -->
+                <div class="veille-card">
+                    <div class="veille-card-inner">
+                        <div class="veille-card-icon">
+                            <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M50 20 L50 35 M35 35 L65 35 M35 35 L35 70 M65 35 L65 70 M35 70 L50 80 L65 70"/>
+                                <circle cx="50" cy="52" r="8"/>
+                                <path d="M50 44 L50 38"/>
+                            </svg>
+                        </div>
+                        <h3>Veille Cybersécurité</h3>
+                        <p>Restez informé des dernières menaces, vulnérabilités et bonnes pratiques en matière de sécurité informatique.</p>
+                        <div class="veille-buttons">
+                            <a href="#" class="veille-btn veille-btn-primary">Document PDF</a>
+                            <a href="#" class="veille-btn veille-btn-secondary">Consulter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p><strong>Portfolio</strong></p>
+                    <p>Chaque projet représente mon investissement, mes compétences et ma volonté de progresser.</p>
+                    <p style="margin-top: 20px;"><strong>Contact:</strong> +33 7 45 93 27 97</p>
+                    <p><strong>Mail:</strong> abdoumirna756@gmail.com</p>
+                </div>
+                <p class="footer-text">© 2026 Abdou Mirna - Portfolio</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- PAGE CONTACT -->
+    <div id="contact" class="page">
+        <section class="contact-page">
+            <div class="contact-form">
+                <h1 class="section-title" style="margin-bottom: 60px;">Contact</h1>
+                
+                <form>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="prenom">Prénom *</label>
+                            <input type="text" id="prenom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nom">Nom *</label>
+                            <input type="text" id="nom" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="6"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Envoyer</button>
+                </form>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p><strong>Portfolio</strong></p>
+                    <p>Chaque projet représente mon investissement, mes compétences et ma volonté de progresser.</p>
+                    <p style="margin-top: 20px;"><strong>Contact:</strong> +33 7 45 93 27 97</p>
+                    <p><strong>Mail:</strong> abdoumirna756@gmail.com</p>
+                </div>
+                <p class="footer-text">© 2026 Abdou Mirna - Portfolio</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            document.getElementById(pageId).classList.add('active');
+            
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            if(event && event.target) {
+                event.target.classList.add('active');
+            }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

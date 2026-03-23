@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stage Robigus Restaurant - Abdou Mirna</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --gray-dark: #F5F5F5;
+            --gray: #E8E8E8;
+            --gray-lighter: #666666;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 25px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .back-link {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--black);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: opacity 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-link:hover { opacity: 0.6; }
+
+        .nav-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .hero {
+            padding: 140px 60px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .stage-meta {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gray-lighter);
+        }
+
+        .stage-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stage-meta span::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--black);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(48px, 7vw, 68px);
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: var(--gray-lighter);
+            font-weight: 400;
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        .image-hero {
+            width: 100%;
+            max-width: 1400px;
+            margin: 60px auto;
+            padding: 0 60px;
+        }
+
+        .image-wrapper {
+            width: 100%;
+            height: 65vh;
+            max-height: 600px;
+            overflow: hidden;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: all 0.7s ease;
+        }
+
+        .image-wrapper:hover img {
+            filter: grayscale(0%);
+        }
+
+        .content-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 60px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 100px;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 140px;
+            height: fit-content;
+        }
+
+        .info-block {
+            margin-bottom: 45px;
+        }
+
+        .info-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gray-lighter);
+            margin-bottom: 10px;
+        }
+
+        .info-value {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .tech-tag {
+            font-size: 13px;
+            padding: 6px 0;
+            color: var(--gray-lighter);
+            border-bottom: 1px solid var(--gray);
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            color: var(--black);
+            padding-left: 10px;
+        }
+
+        .main-content {
+            max-width: 700px;
+        }
+
+        .section {
+            margin-bottom: 70px;
+        }
+
+        .section-number {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray-lighter);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-text {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--gray-lighter);
+            margin-bottom: 18px;
+        }
+
+        .list {
+            margin: 20px 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .list li {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--gray-lighter);
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--black);
+        }
+
+        .documents-section {
+            background: var(--gray-dark);
+            padding: 90px 60px;
+            margin-top: 80px;
+        }
+
+        .documents-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .documents-header {
+            margin-bottom: 50px;
+        }
+
+        .documents-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .documents-header p {
+            font-size: 14px;
+            color: var(--gray-lighter);
+        }
+
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 35px;
+        }
+
+        .doc-card {
+            background: var(--white);
+            padding: 40px;
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
+        }
+
+        .doc-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--black);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .doc-icon {
+            width: 36px;
+            height: 36px;
+            margin-bottom: 22px;
+            stroke-width: 1.5;
+        }
+
+        .doc-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .doc-description {
+            font-size: 14px;
+            color: var(--gray-lighter);
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .doc-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--black);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .doc-link::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .doc-link:hover::after {
+            transform: translateX(5px);
+        }
+
+        footer {
+            padding: 50px 60px;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-info {
+            font-size: 13px;
+            color: var(--gray-lighter);
+        }
+
+        .footer-info p {
+            margin-bottom: 4px;
+        }
+
+        .footer-info strong {
+            color: var(--black);
+        }
+
+        .footer-back a {
+            font-size: 13px;
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-back a:hover {
+            opacity: 0.6;
+        }
+
+        @media (max-width: 1024px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                padding: 60px 40px;
+            }
+
+            .sidebar {
+                position: static;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 25px;
+            }
+
+            .documents-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav, .hero, .image-hero, .documents-section, footer {
+                padding-left: 30px;
+                padding-right: 30px;
+            }
+
+            h1 {
+                font-size: 40px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .sidebar {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 25px;
+                text-align: center;
+            }
+
+            .image-wrapper {
+                height: 50vh;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../index.html" class="back-link">
+            <span>←</span> Retour
+        </a>
+        <div class="nav-logo">Abdou Mirna</div>
+    </nav>
+
+    <section class="hero">
+        <div class="stage-meta">
+            <span>Stage 02</span>
+            <span>2024 - 2025</span>
+            <span>5 semaines</span>
+        </div>
+        <h1>Robigus Restaurant</h1>
+        <p class="subtitle">
+            Conception complète d'un site web pour un restaurant gastronomique — Amélioration de l'image de marque et présence digitale.
+        </p>
+    </section>
+
+    <div class="image-hero">
+        <div class="image-wrapper">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800" alt="Robigus Restaurant">
+        </div>
+    </div>
+
+    <div class="content-grid">
+        <aside class="sidebar">
+            <div class="info-block">
+                <p class="info-label">Période</p>
+                <p class="info-value">2024 — 2025</p>
+            </div>
+            <div class="info-block">
+                <p class="info-label">Durée</p>
+                <p class="info-value">5 semaines</p>
+            </div>
+            <div class="info-block">
+                <p class="info-label">Lieu</p>
+                <p class="info-value">Région parisienne</p>
+            </div>
+            <div class="info-block">
+                <p class="info-label">Technologies</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">MySQL</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="section">
+                <p class="section-number">01 — Contexte</p>
+                <h2 class="section-title">À propos du stage</h2>
+                <p class="section-text">
+                    J'ai réalisé mon second stage chez Robigus Restaurant grâce à un camarade de classe, dont le père est le propriétaire. Cette opportunité m'a permis de travailler sur un projet concret de développement web pour le secteur de la restauration.
+                </p>
+                <p class="section-text">
+                    Robigus est un restaurant gastronomique qui souhaitait améliorer son image et sa présence sur internet afin d'attirer une nouvelle clientèle et de moderniser son identité numérique.
+                </p>
+            </div>
+
+            <div class="section">
+                <p class="section-number">02 — Missions</p>
+                <h2 class="section-title">Travail réalisé</h2>
+                <p class="section-text">
+                    Durant ce stage, j'ai conçu un site web complet pour le restaurant dans le but d'améliorer son image et sa présence sur internet.
+                </p>
+                <ul class="list">
+                    <li>Analyse des besoins du client et étude de marché</li>
+                    <li>Création d'une identité visuelle moderne et élégante</li>
+                    <li>Conception de maquettes et prototypes interactifs</li>
+                    <li>Développement du site web responsive</li>
+                    <li>Intégration d'un système de réservation en ligne</li>
+                    <li>Optimisation SEO et performance web</li>
+                    <li>Formation du personnel à la gestion du site</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <p class="section-number">03 — Résultats</p>
+                <h2 class="section-title">Compétences développées</h2>
+                <p class="section-text">
+                    Ce stage m'a permis d'acquérir une expérience complète en gestion de projet web et en relation client.
+                </p>
+                <ul class="list">
+                    <li>Design web et expérience utilisateur (UX/UI)</li>
+                    <li>Développement front-end et back-end</li>
+                    <li>Gestion de projet et respect des deadlines</li>
+                    <li>Communication client et recueil des besoins</li>
+                    <li>Optimisation et maintenance de site web</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <section class="documents-section">
+        <div class="documents-container">
+            <div class="documents-header">
+                <h2>Documents</h2>
+                <p>Téléchargez les documents liés à ce stage</p>
+            </div>
+            
+            <div class="documents-grid">
+                <div class="doc-card">
+                    <svg class="doc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                    </svg>
+                    <h3 class="doc-title">Note de synthèse</h3>
+                    <p class="doc-description">
+                        Résumé des activités, compétences acquises et bilan de l'expérience professionnelle.
+                    </p>
+                    <a href="#" class="doc-link">Télécharger</a>
+                </div>
+
+                <div class="doc-card">
+                    <svg class="doc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <rect x="8" y="12" width="8" height="8"/>
+                    </svg>
+                    <h3 class="doc-title">Cahier des charges</h3>
+                    <p class="doc-description">
+                        Document détaillant les spécifications techniques et fonctionnelles du projet.
+                    </p>
+                    <a href="#" class="doc-link">Télécharger</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <p><strong>Abdou Mirna</strong></p>
+                <p>BTS SIO SLAM — Portfolio 2026</p>
+                <p style="margin-top: 15px;"><strong>Contact:</strong> +33 7 45 93 27 97</p>
+                <p><strong>Mail:</strong> abdoumirna756@gmail.com</p>
+            </div>
+            <div class="footer-back">
+                <a href="../index.html">← Retour au portfolio</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
