@@ -1052,21 +1052,104 @@
             .cert-card { padding: 35px 25px; }
             .cert-pix { padding: 40px 30px; }
         }
+
+
+        /* PAGE DOCUMENTS - STYLE RAPIDE */
+.documents-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px;
+}
+
+.documents-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.document-card {
+    background: var(--white);
+    border: 1px solid var(--gray);
+    border-radius: 12px;
+    padding: 40px 30px;
+    text-align: center;
+    width: 320px;
+    transition: all 0.3s ease;
+}
+
+.document-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    border-color: var(--black);
+}
+
+.document-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.document-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: var(--black);
+}
+
+.document-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--gray-lighter);
+    margin-bottom: 25px;
+}
+
+.document-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: var(--black);
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    border: 2px solid var(--black);
+}
+
+.document-btn:hover {
+    background: var(--white);
+    color: var(--black);
+}
+
+@media (max-width: 768px) {
+    .documents-grid {
+        gap: 25px;
+    }
+    .document-card {
+        width: 100%;
+        max-width: 320px;
+        padding: 30px 25px;
+    }
+}
     </style>
 </head>
 <body>
 
     <!-- Navigation -->
     <nav>
-        <div class="logo" onclick="showPage('accueil')">mirnawork</div>
+        <div class="logo" onclick="showPage('accueil', event)">mirnawork</div>
         <ul class="nav-menu">
-            <li><a onclick="showPage('accueil')" class="nav-link active">Accueil</a></li>
-            <li><a onclick="showPage('bts-sio')" class="nav-link">BTS SIO</a></li>
-            <li><a onclick="showPage('parcours')" class="nav-link">Parcours professionnel</a></li>
-            <li><a onclick="showPage('projet')" class="nav-link">Projets</a></li>
-            <li><a onclick="showPage('certification')" class="nav-link">Certifications</a></li>
-            <li><a onclick="showPage('veille')" class="nav-link">Veille</a></li>
-            <li><a onclick="showPage('contact')" class="nav-link">Contact</a></li>
+            <li><a onclick="showPage('accueil', event)" class="nav-link active">Accueil</a></li>
+            <li><a onclick="showPage('bts-sio', event)" class="nav-link">BTS SIO</a></li>
+            <li><a onclick="showPage('parcours', event)" class="nav-link">Parcours professionnel</a></li>
+            <li><a onclick="showPage('projet', event)" class="nav-link">Projets</a></li>
+            <li><a onclick="showPage('certification', event)" class="nav-link">Certifications</a></li>
+            <li><a onclick="showPage('veille', event)" class="nav-link">Veille</a></li>
+            <li><a onclick="showPage('documents', event)" class="nav-link">Documents</a></li>
         </ul>
     </nav>
 
@@ -1081,7 +1164,7 @@
                 <p>
                     Cette formation me permet d'acquérir des compétences solides en développement de logiciels et en gestion de projets informatiques.
                 </p>
-                <a href="#" class="cta-button" onclick="showPage('projet')">Découvrir mes projets</a>
+                <a href="#" class="cta-button" onclick="showPage('projet', event)">Découvrir mes projets</a>
             </div>
         </div>
     </div>
@@ -1201,7 +1284,7 @@
                         <div class="parcours-buttons">
                             <a href="Stages/Stage_02.html" class="parcours-btn parcours-btn-primary">Voir les détails</a>
                             <a href="pdf/NOTE DE SYNTHESE ADBOU MINRA.pdf" target="_blank" rel="noopener noreferrer" class="parcours-btn parcours-btn-secondary">Note de synthèse</a>
-                    <a href="pdf/cahier des charges mirna 2026.pdf" target="_blank" class="parcours-btn parcours-btn-secondary">Cahier des charges</a>
+                            <a href="pdf/cahier des charges mirna 2026.pdf" target="_blank" class="parcours-btn parcours-btn-secondary">Cahier des charges</a>
                         </div>
                     </div>
                 </div>
@@ -1304,51 +1387,47 @@
                 </p>
             </div>
 
-<!-- Développement & Versioning -->
-<div class="certification-category">
-    <div class="category-header">
-        <h2 class="category-title">Développement & Versioning</h2>
-    </div>
-    <div class="certifications-grid">
-        <div class="cert-card">
-            <h4>Git & GitHub</h4>
-            <p>Gérez du code avec Git et GitHub</p>
-            <span class="cert-provider">OpenClassrooms</span>
-        </div>
-        <div class="cert-card">
-            <h4>Qualité Logicielle</h4>
-            <p>Initiez-vous au test et à la qualité logiciel</p>
-            <span class="cert-provider">OpenClassrooms</span>
-        </div>
-        <div class="cert-card">
-            <h4>Développement Sécurisé</h4>
-            <p>Bonnes pratiques de codage et sécurité</p>
-            <span class="cert-provider">OpenClassrooms</span>
-        </div>
-    </div>
-</div>
+            <!-- Développement & Versioning -->
+            <div class="certification-category">
+                <div class="category-header">
+                    <h2 class="category-title">Développement & Versioning</h2>
+                </div>
+                <div class="certifications-grid">
+                    <div class="cert-card">
+                        <h4>Git & GitHub</h4>
+                        <p>Gérez du code avec Git et GitHub</p>
+                        <span class="cert-provider">OpenClassrooms</span>
+                    </div>
+                    <div class="cert-card">
+                        <h4>Qualité Logicielle</h4>
+                        <p>Initiez-vous au test et à la qualité logiciel</p>
+                        <span class="cert-provider">OpenClassrooms</span>
+                    </div>
+                    <div class="cert-card">
+                        <h4>Développement Sécurisé</h4>
+                        <p>Bonnes pratiques de codage et sécurité</p>
+                        <span class="cert-provider">OpenClassrooms</span>
+                    </div>
+                </div>
+            </div>
 
             <!-- Cybersécurité -->
             <div class="certification-category">
                 <div class="category-header">
-                    <div class="category-icon"></div>
                     <h2 class="category-title">Cybersécurité</h2>
                 </div>
                 <div class="certifications-grid">
                     <div class="cert-card">
-                        <div class="cert-icon"></div>
                         <h4>Sécurisez vos applications</h4>
                         <p>Apprendre les réflexes de sécurité en développement</p>
                         <span class="cert-provider">OpenClassrooms</span>
                     </div>
                     <div class="cert-card">
-                        <div class="cert-icon"></div>
                         <h4>Risques SI</h4>
                         <p>Analysez et gérez des risques SI</p>
                         <span class="cert-provider">OpenClassrooms</span>
                     </div>
                     <div class="cert-card">
-                        <div class="cert-icon"></div>
                         <h4>Sécurité Numérique</h4>
                         <p>Découvrez les bases de la sécurité numérique</p>
                         <span class="cert-provider">OpenClassrooms</span>
@@ -1359,24 +1438,20 @@
             <!-- Gestion de Projet & Méthode -->
             <div class="certification-category">
                 <div class="category-header">
-                    <div class="category-icon"></div>
                     <h2 class="category-title">Gestion de Projet & Méthode</h2>
                 </div>
                 <div class="certifications-grid">
                     <div class="cert-card">
-                        <div class="cert-icon"></div>
                         <h4>Méthode Agile</h4>
                         <p>Initiez-vous à la gestion de projet agile</p>
                         <span class="cert-provider">OpenClassrooms</span>
                     </div>
                     <div class="cert-card">
-                        <div class="cert-icon"></div>
                         <h4>Gestion de projet</h4>
                         <p>Gérez votre projet informatique facilement</p>
                         <span class="cert-provider">OpenClassrooms</span>
                     </div>
                     <div class="cert-card">
-                        <div class="cert-icon"></div>
                         <h4>Documentation Technique</h4>
                         <p>Écrivez la documentation de votre projet</p>
                         <span class="cert-provider">OpenClassrooms</span>
@@ -1387,18 +1462,15 @@
             <!-- Intelligence Artificielle -->
             <div class="certification-category">
                 <div class="category-header">
-                    <div class="category-icon"></div>
                     <h2 class="category-title">Intelligence Artificielle</h2>
                 </div>
                 <div class="certifications-grid">
                     <div class="cert-card">
-                        <div class="cert-icon"></div>
                         <h4>Deep Learning</h4>
                         <p>Initiez-vous au Deep Learning</p>
                         <span class="cert-provider">OpenClassrooms</span>
                     </div>
                     <div class="cert-card">
-                        <div class="cert-icon"></div>
                         <h4>Objectif IA</h4>
                         <p>Initiez-vous à l'intelligence artificielle</p>
                         <span class="cert-provider">OpenClassrooms</span>
@@ -1409,12 +1481,10 @@
             <!-- Certification PIX -->
             <div class="certification-category">
                 <div class="category-header">
-                    <div class="category-icon"></div>
                     <h2 class="category-title">Certification Officielle</h2>
                 </div>
                 <div style="max-width: 700px; margin: 0 auto;">
                     <div class="cert-card cert-pix">
-                        <div class="cert-icon"></div>
                         <h4>Certification PIX</h4>
                         <p>Évaluation et certification des compétences numériques (Reconnu par l'État)</p>
                         <span class="cert-badge">Certifié 2026</span>
@@ -1431,6 +1501,50 @@
                 <div class="footer-info">
                     <p><strong>Portfolio</strong></p>
                     <p>Chaque certification représente mon engagement dans l'apprentissage continu.</p>
+                    <p style="margin-top: 20px;"><strong>Contact:</strong> +33 7 45 93 27 97</p>
+                    <p><strong>Mail:</strong> abdoumirna756@gmail.com</p>
+                </div>
+                <p class="footer-text">© 2026 Abdou Mirna - Portfolio</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- PAGE DOCUMENTS -->
+    <div id="documents" class="page">
+        <section>
+            <h1 class="section-title">Documents officiels</h1>
+            
+            <div class="documents-intro">
+                <p style="font-size: 18px; line-height: 1.9; color: var(--gray-lighter); text-align: center; max-width: 800px; margin: 0 auto 80px;">
+                    Retrouvez l'ensemble de mes documents officiels : CV, tableau de synthèse et autres documents administratifs liés à mon parcours.
+                </p>
+            </div>
+
+            <div class="documents-grid">
+                <!-- CV -->
+                <div class="document-card">
+                    <div class="document-icon">📄</div>
+                    <h3>Curriculum Vitae</h3>
+                    <p>Mon CV détaillant mon parcours, mes compétences et mes expériences professionnelles.</p>
+                    <a href="pdf/CV_Abdou_Mirna.pdf" target="_blank" rel="noopener noreferrer" class="document-btn">Télécharger le CV</a>
+                </div>
+
+                <!-- Tableau de synthèse -->
+                <div class="document-card">
+                    <div class="document-icon">📊</div>
+                    <h3>Tableau de synthèse</h3>
+                    <p>Synthèse complète de mes compétences, projets et réalisations durant le BTS SIO.</p>
+                    <a href="pdf/Tableau_Synthese_Abdou_Mirna.pdf" target="_blank" rel="noopener noreferrer" class="document-btn">Télécharger le tableau</a>
+                </div>
+            </div>
+
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p><strong>Portfolio</strong></p>
+                    <p>Chaque projet représente mon investissement, mes compétences et ma volonté de progresser.</p>
                     <p style="margin-top: 20px;"><strong>Contact:</strong> +33 7 45 93 27 97</p>
                     <p><strong>Mail:</strong> abdoumirna756@gmail.com</p>
                 </div>
@@ -1510,71 +1624,39 @@
         </footer>
     </div>
 
-    <!-- PAGE CONTACT -->
-    <div id="contact" class="page">
-        <section class="contact-page">
-            <div class="contact-form">
-                <h1 class="section-title" style="margin-bottom: 60px;">Contact</h1>
-                
-                <form>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="prenom">Prénom *</label>
-                            <input type="text" id="prenom" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="nom">Nom *</label>
-                            <input type="text" id="nom" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" rows="6"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">Envoyer</button>
-                </form>
-            </div>
-        </section>
-
-        <footer>
-            <div class="footer-content">
-                <div class="footer-info">
-                    <p><strong>Portfolio</strong></p>
-                    <p>Chaque projet représente mon investissement, mes compétences et ma volonté de progresser.</p>
-                    <p style="margin-top: 20px;"><strong>Contact:</strong> +33 7 45 93 27 97</p>
-                    <p><strong>Mail:</strong> abdoumirna756@gmail.com</p>
-                </div>
-                <p class="footer-text">© 2026 Abdou Mirna - Portfolio</p>
-            </div>
-        </footer>
-    </div>
-
     <script>
-        function showPage(pageId) {
+        // Version corrigée de showPage qui fonctionne correctement
+        function showPage(pageId, event) {
+            // Empêcher le comportement par défaut si event existe
+            if (event) {
+                event.preventDefault();
+            }
+            
+            // Cacher toutes les pages
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
             
-            document.getElementById(pageId).classList.add('active');
+            // Afficher la page sélectionnée
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
             
+            // Mettre à jour la classe active sur les liens de navigation
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
+                // Vérifier si le lien correspond à la page
+                const onclickAttr = link.getAttribute('onclick');
+                if (onclickAttr && onclickAttr.includes(pageId)) {
+                    link.classList.add('active');
+                }
             });
-            
-            if(event && event.target) {
-                event.target.classList.add('active');
-            }
             
             // Sauvegarder la page active
             localStorage.setItem('currentPage', pageId);
             
+            // Scroll en haut de page
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -1590,7 +1672,8 @@
                 // Activer le lien de navigation correspondant
                 document.querySelectorAll('.nav-link').forEach(link => {
                     link.classList.remove('active');
-                    if (link.getAttribute('onclick') && link.getAttribute('onclick').includes(savedPage)) {
+                    const onclickAttr = link.getAttribute('onclick');
+                    if (onclickAttr && onclickAttr.includes(savedPage)) {
                         link.classList.add('active');
                     }
                 });
