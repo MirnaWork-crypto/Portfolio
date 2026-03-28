@@ -841,171 +841,19 @@
             </div>
         </div>
 
-        <!-- CIBLES & IMPACTS -->
-        <div class="table-wrapper">
-            <div class="section-label">Analyse</div>
-            <h2 class="section-heading">Cibles & impacts</h2>
-            <table class="custom-table">
-                <thead>
-                    <tr>
-                        <th>Cible</th>
-                        <th>Vecteur utilisé</th>
-                        <th>Impact potentiel</th>
-                        <th>Exemple réel</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Particuliers</strong></td>
-                        <td>E-mail, SMS, appel téléphonique</td>
-                        <td>Vol d'identifiants, fraude bancaire, usurpation d'identité</td>
-                        <td>Faux e-mail "Colis en attente" de Chronopost</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Entreprises (PME)</strong></td>
-                        <td>Spear phishing par e-mail professionnel</td>
-                        <td>Fuite de données clients, ransomware, sabotage</td>
-                        <td>Fausse facture d'un fournisseur connu</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Grandes entreprises</strong></td>
-                        <td>Whaling, deepfake, compromission de compte</td>
-                        <td>Millions d'euros détournés, espionnage industriel</td>
-                        <td>Fraude au président — 38 M€ chez un sous-traitant Airbus</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Administrations & États</strong></td>
-                        <td>APT (menaces persistantes avancées), spear phishing</td>
-                        <td>Compromission d'infrastructures critiques, espionnage</td>
-                        <td>Attaque contre le Parlement européen (2023)</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- PROTECTIONS -->
-        <div class="section-label">Défense</div>
-        <h2 class="section-heading">Comment se protéger ?</h2>
-        <div class="protection-grid">
-            <div class="protection-card">
-                <span class="protection-icon">🔐</span>
-                <h4>Authentification multi-facteurs (MFA)</h4>
-                <p>Même si un mot de passe est volé, le <strong>second facteur d'authentification</strong> (code SMS, application d'authentification) empêche l'accès. C'est la mesure de protection la plus efficace contre le phishing classique.</p>
-            </div>
-            <div class="protection-card">
-                <span class="protection-icon">🎓</span>
-                <h4>Sensibilisation & formation</h4>
-                <p>La <strong>première ligne de défense c'est l'humain</strong>. Des formations régulières et des simulations de phishing permettent aux employés de reconnaître les signaux d'alerte : urgence artificielle, expéditeur inhabituel, lien suspect.</p>
-            </div>
-            <div class="protection-card">
-                <span class="protection-icon">🛡️</span>
-                <h4>Filtres anti-phishing</h4>
-                <p>Les outils comme <strong>Google Safe Browsing, Microsoft Defender</strong> ou les solutions EDR d'entreprise analysent les e-mails entrants et bloquent les liens et pièces jointes malveillants avant qu'ils n'atteignent l'utilisateur.</p>
-            </div>
-            <div class="protection-card">
-                <span class="protection-icon">🔍</span>
-                <h4>Vérification systématique</h4>
-                <p>Toujours vérifier l'<strong>adresse de l'expéditeur, le domaine du lien</strong> (survol sans cliquer), et contacter directement l'organisation concernée par un canal officiel en cas de doute. Ne jamais agir sous la pression de l'urgence.</p>
-            </div>
-            <div class="protection-card">
-                <span class="protection-icon">📋</span>
-                <h4>Protocoles DMARC / SPF / DKIM</h4>
-                <p>Ces <strong>standards techniques</strong> permettent aux serveurs de messagerie de vérifier qu'un e-mail provient bien du domaine qu'il prétend représenter. Ils réduisent drastiquement l'usurpation d'identité d'expéditeur.</p>
-            </div>
-            <div class="protection-card">
-                <span class="protection-icon">⚠️</span>
-                <h4>Signalement & veille active</h4>
-                <p>En France, les victimes peuvent signaler les tentatives sur <strong>cybermalveillance.gouv.fr</strong>. Le CERT-FR publie des alertes régulières. Une veille active permet de se tenir informé des nouvelles campagnes en cours.</p>
-            </div>
-        </div>
-
-        <!-- CADRE LÉGAL -->
-        <div class="section-label">Réglementation</div>
-        <h2 class="section-heading">Cadre légal & sanctions</h2>
-        <div class="legal-grid">
-            <div class="legal-card">
-                <span class="legal-tag">Code pénal</span>
-                <h4>Droit français</h4>
-                <p>Le phishing est qualifié en France d'<strong>escroquerie informatique</strong> (art. 313-1 CP) et d'<strong>accès frauduleux à un système de traitement automatisé de données</strong> (art. 323-1 CP). Jusqu'à <strong>5 ans de prison et 375 000 € d'amende</strong>.</p>
-            </div>
-            <div class="legal-card">
-                <span class="legal-tag">RGPD</span>
-                <h4>Protection des données</h4>
-                <p>Une entreprise victime d'une attaque de phishing ayant entraîné une <strong>fuite de données personnelles</strong> est tenue de la notifier à la CNIL sous 72h. Elle peut être sanctionnée si ses mesures de sécurité étaient insuffisantes.</p>
-            </div>
-            <div class="legal-card">
-                <span class="legal-tag">NIS 2 (2024)</span>
-                <h4>Directive européenne</h4>
-                <p>La directive NIS 2 impose aux <strong>entités essentielles et importantes</strong> de mettre en place des mesures de cybersécurité renforcées, incluant la gestion des risques liés au phishing, sous peine de lourdes sanctions financières.</p>
-            </div>
-        </div>
-
-        <!-- PROS / CONS -->
-        <div class="section-label">Bilan</div>
-        <h2 class="section-heading">Pourquoi le phishing persiste ?</h2>
-        <div class="pros-cons-grid">
-            <div class="pros-box">
-                <h4>Ce qui le rend si efficace</h4>
-                <ul class="check-list">
-                    <li>Exploite la psychologie humaine : urgence, peur, curiosité</li>
-                    <li>Faible coût pour l'attaquant, retour sur investissement élevé</li>
-                    <li>Difficile à bloquer à 100% — la faille est humaine, pas technique</li>
-                    <li>L'IA permet de générer des milliers de messages personnalisés automatiquement</li>
-                    <li>Les deepfakes rendent les appels et vidéos indétectables à l'œil nu</li>
-                    <li>Peut contourner les solutions de sécurité les plus avancées</li>
-                </ul>
-            </div>
-            <div class="cons-box">
-                <h4>Ce qui le limite & le combat</h4>
-                <ul class="check-list">
-                    <li>La MFA bloque l'accès même avec un mot de passe volé</li>
-                    <li>Les solutions EDR et anti-spam détectent les patterns connus</li>
-                    <li>Les simulations de phishing sensibilisent efficacement les équipes</li>
-                    <li>Les passkeys rendent le vol de mot de passe inutile par conception</li>
-                    <li>La coopération internationale renforce les poursuites judiciaires</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- CONCLUSION -->
-        <div class="conclusion-box">
-            <div class="section-label">Conclusion & Analyse</div>
-            <h2>La meilleure faille, c'est toujours l'humain</h2>
-            <p>
-                Ma veille démontre que le phishing est une menace qui a su évoluer avec son temps. De simples e-mails grossiers des années 90 aux attaques pilotées par intelligence artificielle d'aujourd'hui, il reste la cybermenace numéro un dans le monde — non pas parce que les outils manquent, mais parce qu'il exploite une vulnérabilité qu'on ne peut pas patcher : la psychologie humaine.
-            </p>
-            <p>
-                La bonne nouvelle, c'est que les solutions existent : authentification multi-facteurs, sensibilisation des équipes, passkeys, protocoles d'e-mail robustes. L'enjeu n'est pas technologique — c'est une question de culture de cybersécurité à tous les niveaux, de l'individu à l'entreprise.
-            </p>
-            <div class="conclusion-stats">
-                <div class="c-stat">
-                    <div class="c-stat-value">36%</div>
-                    <div class="c-stat-label">des failles de données liées au phishing</div>
-                </div>
-                <div class="c-stat">
-                    <div class="c-stat-value">30 ans</div>
-                    <div class="c-stat-label">d'existence et toujours la menace n°1</div>
-                </div>
-                <div class="c-stat">
-                    <div class="c-stat-value">IA</div>
-                    <div class="c-stat-label">nouvelle frontière des attaques en 2024-2025</div>
-                </div>
-            </div>
-        </div>
-
+      
         <!-- SOURCES -->
         <div class="section-label">Méthodologie</div>
         <h2 class="section-heading">Sources & Outils de veille</h2>
         <div class="sources-wrapper">
-            <p><strong>Outils utilisés :</strong> Alertes Google, CERT-FR (alertes hebdomadaires), cybermalveillance.gouv.fr, rapports annuels de cybersécurité (Verizon DBIR, ANSSI), presse spécialisée (LeMagIT, ZDNet, The Hacker News).</p>
+            <p><strong>Outils utilisés :</strong> Alertes Google, CERT-FR (alertes hebdomadaires), cybermalveillance.gouv.fr, rapports annuels de cybersécurité (ANSSI), presse spécialisée (LeMagIT, ZDNet, The Hacker News).</p>
             <p><strong>Sources consultées :</strong></p>
             <div class="source-links">
                 <a href="https://www.cert.ssi.gouv.fr/" target="_blank" class="source-link">CERT-FR</a>
-                <a href="https://www.cybermalveillance.gouv.fr/" target="_blank" class="source-link">Cybermalveillance.gouv.fr</a>
-                <a href="https://www.verizon.com/business/resources/reports/dbir/" target="_blank" class="source-link">Verizon DBIR 2024</a>
+                <a href="https://www.cybermalveillance.gouv.fr/" target="_blank" class="source-link">Cybermalveillance.gouv.fr</a>         
                 <a href="https://www.ssi.gouv.fr/" target="_blank" class="source-link">ANSSI</a>
                 <a href="https://www.phishing.org/" target="_blank" class="source-link">Phishing.org</a>
-                <a href="https://thehackernews.com/" target="_blank" class="source-link">The Hacker News</a>
+    
             </div>
         </div>
 
