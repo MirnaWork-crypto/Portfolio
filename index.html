@@ -6,11 +6,7 @@
     <title>Abdou Mirna - Portfolio BTS SIO SLAM</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --black: #000000;
@@ -29,34 +25,29 @@
             cursor: default;
         }
 
-        /* Grain Effect */
         body::after {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
             opacity: 0.03;
             pointer-events: none;
             z-index: 9999;
         }
 
-        /* Navigation */
+        /* NAV */
         nav {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             padding: 30px 80px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255,255,255,0.95);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
             animation: navSlide 1s ease-out;
         }
 
@@ -94,48 +85,26 @@
         .nav-menu a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 1px;
+            bottom: -5px; left: 0;
+            width: 0; height: 1px;
             background: var(--black);
             transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .nav-menu a:hover,
-        .nav-menu a.active {
-            color: var(--black);
-        }
+        .nav-menu a:hover, .nav-menu a.active { color: var(--black); }
+        .nav-menu a.active::after { width: 100%; }
+        .nav-menu a:hover::after { width: 100%; }
 
-        .nav-menu a.active::after {
-            width: 100%;
-        }
-
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
-
-        /* Page System */
-        .page {
-            display: none;
-            opacity: 0;
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-
-        .page.active {
-            display: block;
-        }
+        /* PAGES */
+        .page { display: none; opacity: 0; animation: fadeIn 0.6s ease-out forwards; }
+        .page.active { display: block; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Section Styles */
-        section {
-            padding: 150px 80px;
-            min-height: 100vh;
-        }
+        section { padding: 150px 80px; min-height: 100vh; }
 
         .section-title {
             font-family: 'Playfair Display', serif;
@@ -149,14 +118,12 @@
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -20px;
-            left: 0;
-            width: 60%;
-            height: 2px;
+            bottom: -20px; left: 0;
+            width: 60%; height: 2px;
             background: var(--black);
         }
 
-        /* ACCUEIL PAGE - CENTERED VERSION */
+        /* ===== ACCUEIL ===== */
         .accueil-hero {
             min-height: 100vh;
             display: flex;
@@ -189,8 +156,14 @@
             margin-right: auto;
         }
 
-        .hero-content p:last-of-type {
-            margin-bottom: 45px;
+        .hero-content p:last-of-type { margin-bottom: 45px; }
+
+        /* Boutons hero côte à côte */
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         .cta-button {
@@ -214,10 +187,8 @@
         .cta-button::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
+            top: 50%; left: 50%;
+            width: 0; height: 0;
             background: var(--white);
             border-radius: 50%;
             transform: translate(-50%, -50%);
@@ -228,44 +199,67 @@
         .cta-button:hover {
             color: var(--black);
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
-        .cta-button:hover::before {
-            width: 300%;
-            height: 300%;
+        .cta-button:hover::before { width: 300%; height: 300%; }
+
+        /* Bouton CV — style secondaire (blanc / bordure noire) */
+        .cv-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 50px;
+            background: var(--white);
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border: 2px solid var(--black);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
 
-        /* BTS SIO PAGE - MODERN DESIGN */
-        .bts-intro {
-            text-align: center;
-            max-width: 1200px;
-            margin: 0 auto 100px;
+        .cv-button::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 0; height: 0;
+            background: var(--black);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: -1;
         }
+
+        .cv-button:hover {
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .cv-button:hover::before { width: 300%; height: 300%; }
+
+        /* ===== BTS SIO ===== */
+        .bts-intro { text-align: center; max-width: 1200px; margin: 0 auto 100px; }
 
         .bts-intro-content {
             padding: 60px;
             background: var(--gray-dark);
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
-        .bts-intro-content h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 36px;
-            margin-bottom: 30px;
-        }
+        .bts-intro-content h2 { font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 30px; }
 
-        .bts-options-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 60px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        .bts-options-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 60px; max-width: 1200px; margin: 0 auto; }
 
         .bts-option-card {
             background: var(--white);
-            border: 2px solid rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(0,0,0,0.1);
             padding: 60px 50px;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
@@ -275,25 +269,16 @@
         .bts-option-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
             background: var(--black);
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.5s ease;
         }
 
-        .bts-option-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            border-color: var(--black);
-        }
-
-        .bts-option-card:hover::before {
-            transform: scaleX(1);
-        }
+        .bts-option-card:hover { transform: translateY(-10px); box-shadow: 0 20px 60px rgba(0,0,0,0.15); border-color: var(--black); }
+        .bts-option-card:hover::before { transform: scaleX(1); }
 
         .bts-option-badge {
             display: inline-block;
@@ -307,97 +292,24 @@
             margin-bottom: 30px;
         }
 
-        .bts-option-card.slam .bts-option-badge {
-            background: var(--black);
-        }
+        .bts-option-card.sisr .bts-option-badge { background: var(--gray-lighter); }
+        .bts-option-card h3 { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; margin-bottom: 15px; }
+        .bts-option-card .subtitle { font-size: 14px; color: var(--gray-lighter); margin-bottom: 30px; font-weight: 600; letter-spacing: 1px; }
+        .bts-option-card p { font-size: 16px; line-height: 1.8; color: var(--gray-lighter); margin-bottom: 30px; }
+        .bts-competences { margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--gray); }
+        .bts-competences h4 { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 20px; }
+        .bts-competences ul { list-style: none; }
+        .bts-competences li { font-size: 15px; color: var(--gray-lighter); margin-bottom: 12px; padding-left: 25px; position: relative; }
+        .bts-competences li::before { content: '→'; position: absolute; left: 0; color: var(--black); font-weight: 700; }
 
-        .bts-option-card.sisr .bts-option-badge {
-            background: var(--gray-lighter);
-        }
-
-        .bts-option-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--black);
-        }
-
-        .bts-option-card .subtitle {
-            font-size: 14px;
-            color: var(--gray-lighter);
-            margin-bottom: 30px;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .bts-option-card p {
-            font-size: 16px;
-            line-height: 1.8;
-            color: var(--gray-lighter);
-            margin-bottom: 30px;
-        }
-
-        .bts-competences {
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid var(--gray);
-        }
-
-        .bts-competences h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--black);
-        }
-
-        .bts-competences ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .bts-competences li {
-            font-size: 15px;
-            color: var(--gray-lighter);
-            margin-bottom: 12px;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        .bts-competences li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--black);
-            font-weight: 700;
-        }
-
-        /* PARCOURS PAGE - NEW MODERN DESIGN */
-        .parcours-intro {
-            text-align: center;
-            max-width: 1200px;
-            margin: 0 auto 100px;
-        }
-
-        .parcours-intro-content {
-            padding: 60px;
-            background: var(--gray-dark);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .parcours-cards-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 60px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        /* ===== PARCOURS ===== */
+        .parcours-intro { text-align: center; max-width: 1200px; margin: 0 auto 100px; }
+        .parcours-intro-content { padding: 60px; background: var(--gray-dark); border: 1px solid rgba(0,0,0,0.05); }
+        .parcours-cards-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 60px; max-width: 1200px; margin: 0 auto; }
 
         .parcours-card {
             background: var(--white);
-            border: 2px solid rgba(0, 0, 0, 0.1);
-            padding: 0;
+            border: 2px solid rgba(0,0,0,0.1);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
@@ -406,72 +318,30 @@
         .parcours-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
             background: var(--black);
             transform: scaleY(0);
             transform-origin: top;
             transition: transform 0.5s ease;
         }
 
-        .parcours-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            border-color: var(--black);
-        }
-
-        .parcours-card:hover::before {
-            transform: scaleY(1);
-        }
+        .parcours-card:hover { transform: translateY(-10px); box-shadow: 0 20px 60px rgba(0,0,0,0.15); border-color: var(--black); }
+        .parcours-card:hover::before { transform: scaleY(1); }
 
         .parcours-card-image {
-            width: 100%;
-            height: 300px;
+            width: 100%; height: 300px;
             object-fit: cover;
             filter: grayscale(100%);
             transition: all 0.6s ease;
         }
 
-        .parcours-card:hover .parcours-card-image {
-            filter: grayscale(0%);
-            transform: scale(1.05);
-        }
-
-        .parcours-card-content {
-            padding: 50px 40px;
-        }
-
-        .parcours-number {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--gray-lighter);
-            margin-bottom: 15px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-
-        .parcours-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--black);
-        }
-
-        .parcours-card p {
-            font-size: 16px;
-            line-height: 1.8;
-            color: var(--gray-lighter);
-            margin-bottom: 40px;
-        }
-
-        .parcours-buttons {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
+        .parcours-card:hover .parcours-card-image { filter: grayscale(0%); transform: scale(1.05); }
+        .parcours-card-content { padding: 50px 40px; }
+        .parcours-number { font-size: 14px; font-weight: 700; color: var(--gray-lighter); margin-bottom: 15px; letter-spacing: 3px; text-transform: uppercase; }
+        .parcours-card h3 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; margin-bottom: 20px; }
+        .parcours-card p { font-size: 16px; line-height: 1.8; color: var(--gray-lighter); margin-bottom: 40px; }
+        .parcours-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
 
         .parcours-btn {
             padding: 12px 25px;
@@ -485,63 +355,21 @@
             border: 2px solid var(--black);
         }
 
-        .parcours-btn-primary {
-            background: var(--black);
-            color: var(--white);
-        }
+        .parcours-btn-primary { background: var(--black); color: var(--white); }
+        .parcours-btn-primary:hover { background: var(--white); color: var(--black); }
+        .parcours-btn-secondary { background: transparent; color: var(--black); }
+        .parcours-btn-secondary:hover { background: var(--black); color: var(--white); }
 
-        .parcours-btn-primary:hover {
-            background: var(--white);
-            color: var(--black);
-        }
-
-        .parcours-btn-secondary {
-            background: transparent;
-            color: var(--black);
-        }
-
-        .parcours-btn-secondary:hover {
-            background: var(--black);
-            color: var(--white);
-        }
-
-        /* PROJET PAGE - MODERN DESIGN */
-        .projet-intro {
-            text-align: center;
-            max-width: 1000px;
-            margin: 0 auto 100px;
-        }
-
-        .projet-intro h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        .projet-intro h3 {
-            font-size: 24px;
-            color: var(--gray-lighter);
-            margin-bottom: 30px;
-            font-weight: 400;
-        }
-
-        .projet-intro p {
-            font-size: 18px;
-            line-height: 1.9;
-            color: var(--gray-lighter);
-        }
-
-        .projets-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 50px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+        /* ===== PROJETS ===== */
+        .projet-intro { text-align: center; max-width: 1000px; margin: 0 auto 100px; }
+        .projet-intro h2 { font-family: 'Playfair Display', serif; font-size: 48px; margin-bottom: 20px; }
+        .projet-intro h3 { font-size: 24px; color: var(--gray-lighter); margin-bottom: 30px; font-weight: 400; }
+        .projet-intro p { font-size: 18px; line-height: 1.9; color: var(--gray-lighter); }
+        .projets-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; max-width: 1400px; margin: 0 auto; }
 
         .projet-card {
             background: var(--white);
-            border: 2px solid rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(0,0,0,0.1);
             overflow: hidden;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
@@ -550,76 +378,40 @@
         .projet-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
             background: var(--black);
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.5s ease;
         }
 
-        .projet-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            border-color: var(--black);
-        }
-
-        .projet-card:hover::before {
-            transform: scaleX(1);
-        }
+        .projet-card:hover { transform: translateY(-10px); box-shadow: 0 20px 60px rgba(0,0,0,0.15); border-color: var(--black); }
+        .projet-card:hover::before { transform: scaleX(1); }
 
         .projet-card-image {
-            width: 100%;
-            height: 250px;
+            width: 100%; height: 250px;
             object-fit: cover;
             filter: grayscale(100%);
             transition: all 0.6s ease;
         }
 
-        .projet-card:hover .projet-card-image {
-            filter: grayscale(0%);
-            transform: scale(1.05);
-        }
-
-        .projet-card-content {
-            padding: 40px 35px;
-        }
+        .projet-card:hover .projet-card-image { filter: grayscale(0%); transform: scale(1.05); }
+        .projet-card-content { padding: 40px 35px; }
 
         .projet-tag {
             display: inline-block;
             padding: 6px 15px;
             background: var(--gray-dark);
-            color: var(--black);
-            font-size: 11px;
-            font-weight: 700;
+            font-size: 11px; font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
             margin-bottom: 20px;
         }
 
-        .projet-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--black);
-        }
-
-        .projet-card p {
-            font-size: 15px;
-            line-height: 1.7;
-            color: var(--gray-lighter);
-            margin-bottom: 30px;
-        }
-
-        .projet-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 25px;
-        }
+        .projet-card h3 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin-bottom: 15px; }
+        .projet-card p { font-size: 15px; line-height: 1.7; color: var(--gray-lighter); margin-bottom: 30px; }
+        .projet-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 25px; }
 
         .tech-badge {
             padding: 5px 12px;
@@ -644,347 +436,80 @@
             border: 2px solid var(--black);
         }
 
-        .projet-link:hover {
-            background: var(--white);
-            color: var(--black);
-        }
+        .projet-link:hover { background: var(--white); color: var(--black); }
 
-        /* VEILLE PAGE - NEW DESIGN */
-        .veille-intro {
-            text-align: center;
-            max-width: 1200px;
-            margin: 0 auto 100px;
-        }
-
-        .veille-intro-content {
-            padding: 60px;
-            background: var(--gray-dark);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .veille-cards-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 60px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .veille-card {
-            background: var(--white);
-            border: 2px solid rgba(0, 0, 0, 0.1);
-            padding: 60px 50px;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .veille-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--black);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s ease;
-        }
-
-        .veille-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            border-color: var(--black);
-        }
-
-        .veille-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .veille-card-icon {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 30px;
-            color: var(--black);
-            transition: all 0.5s ease;
-        }
-
-        .veille-card:hover .veille-card-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .veille-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--black);
-        }
-
-        .veille-card p {
-            font-size: 16px;
-            line-height: 1.8;
-            color: var(--gray-lighter);
-            margin-bottom: 40px;
-        }
-
-        .veille-buttons {
-            display: flex;
-            gap: 15px;
-        }
-
-        .veille-btn {
-            flex: 1;
-            padding: 15px 30px;
-            text-align: center;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 13px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: all 0.4s ease;
-        }
-
-        .veille-btn-primary {
-            background: var(--black);
-            color: var(--white);
-            border: 2px solid var(--black);
-        }
-
-        .veille-btn-primary:hover {
-            background: var(--white);
-            color: var(--black);
-        }
-
-        .veille-btn-secondary {
-            background: transparent;
-            color: var(--black);
-            border: 2px solid var(--black);
-        }
-
-        .veille-btn-secondary:hover {
-            background: var(--black);
-            color: var(--white);
-        }
-
-        /* CONTACT PAGE */
-        .contact-page {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            width: 100%;
-        }
-
-        .form-group {
-            margin-bottom: 30px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px 20px;
-            border: 2px solid rgba(0, 0, 0, 0.1);
-            background: var(--white);
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--black);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 18px;
-            background: var(--black);
-            color: var(--white);
-            border: none;
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.4s ease;
-        }
-
-        .submit-btn:hover {
-            background: var(--gray-lighter);
-        }
-
-        /* Footer */
-        footer {
-            padding: 60px 80px;
-            background: var(--gray-dark);
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-info p {
-            font-size: 14px;
-            color: var(--gray-lighter);
-            margin-bottom: 5px;
-        }
-
-        .footer-info strong {
-            color: var(--black);
-        }
-
-        .footer-text {
-            font-size: 13px;
-            color: var(--gray-light);
-        }
-
-        /* CERTIFICATION PAGE */
-        .certification-intro {
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto 80px;
-        }
-
-        .certification-intro p {
-            font-size: 18px;
-            line-height: 1.9;
-            color: var(--gray-lighter);
-        }
-
-        .certification-category {
-            margin-bottom: 80px;
-        }
-
-        .category-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .category-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        .category-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .certifications-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 35px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+        /* ===== CERTIFICATIONS ===== */
+        .certification-intro { text-align: center; max-width: 900px; margin: 0 auto 80px; }
+        .certification-intro p { font-size: 18px; line-height: 1.9; color: var(--gray-lighter); }
+        .certification-category { margin-bottom: 80px; }
+        .category-header { text-align: center; margin-bottom: 50px; }
+        .category-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; margin-bottom: 10px; }
+        .certifications-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; max-width: 1400px; margin: 0 auto; }
 
         .cert-card {
             background: var(--white);
-            border: 2px solid rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(0,0,0,0.1);
             padding: 40px 30px;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
             text-align: center;
+            cursor: pointer;
         }
 
         .cert-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
             background: var(--black);
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.5s ease;
         }
 
-        .cert-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            border-color: var(--black);
-        }
+        .cert-card:hover { transform: translateY(-10px); box-shadow: 0 20px 60px rgba(0,0,0,0.15); border-color: var(--black); }
+        .cert-card:hover::before { transform: scaleX(1); }
 
-        .cert-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .cert-icon {
-            font-size: 40px;
-            margin-bottom: 20px;
-        }
-
-        .cert-card h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: var(--black);
-        }
-
-        .cert-card p {
-            font-size: 14px;
-            line-height: 1.6;
-            color: var(--gray-lighter);
-            margin-bottom: 15px;
-        }
+        .cert-card h4 { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+        .cert-card p { font-size: 14px; line-height: 1.6; color: var(--gray-lighter); margin-bottom: 15px; }
 
         .cert-provider {
             display: inline-block;
             padding: 6px 15px;
             background: var(--gray-dark);
-            font-size: 11px;
-            font-weight: 700;
+            font-size: 11px; font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
             margin-top: 10px;
         }
 
+        /* Badge "Voir le certificat" au hover */
+        .cert-hover-badge {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 8px 18px;
+            background: var(--black);
+            color: var(--white);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: all 0.35s ease;
+        }
+
+        .cert-card:hover .cert-hover-badge { opacity: 1; transform: translateY(0); }
+
         .cert-pix {
             background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
             border: 2px solid var(--black);
             padding: 50px 40px;
+            cursor: default;
         }
 
-        .cert-pix h4 {
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
+        .cert-pix h4 { font-size: 24px; margin-bottom: 15px; }
 
         .cert-pix .cert-badge {
             display: inline-block;
@@ -1013,19 +538,185 @@
             margin-top: 15px;
         }
 
-        .cert-pix-button:hover {
-            background: var(--white);
-            color: var(--black);
+        .cert-pix-button:hover { background: var(--white); color: var(--black); }
+
+        /* ===== MODAL IMAGE ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.92);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            animation: modalFadeIn 0.3s ease;
         }
 
-        /* Responsive */
+        .modal-overlay.open { display: flex; }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-inner {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            animation: modalSlideUp 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes modalSlideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-inner img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            display: block;
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -50px; right: 0;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-family: 'Space Grotesk', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .modal-close:hover { opacity: 1; }
+
+        .modal-caption {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* ===== VEILLE ===== */
+        .veille-intro { text-align: center; max-width: 1200px; margin: 0 auto 100px; }
+        .veille-intro-content { padding: 60px; background: var(--gray-dark); border: 1px solid rgba(0,0,0,0.05); }
+        .veille-cards-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 60px; max-width: 1200px; margin: 0 auto; }
+
+        .veille-card {
+            background: var(--white);
+            border: 2px solid rgba(0,0,0,0.1);
+            padding: 60px 50px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .veille-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: var(--black);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .veille-card:hover { transform: translateY(-10px); box-shadow: 0 20px 60px rgba(0,0,0,0.15); border-color: var(--black); }
+        .veille-card:hover::before { transform: scaleX(1); }
+
+        .veille-card-icon {
+            width: 80px; height: 80px;
+            margin-bottom: 30px;
+            color: var(--black);
+            transition: all 0.5s ease;
+        }
+
+        .veille-card:hover .veille-card-icon { transform: scale(1.1) rotate(5deg); }
+        .veille-card h3 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; margin-bottom: 20px; }
+        .veille-card p { font-size: 16px; line-height: 1.8; color: var(--gray-lighter); margin-bottom: 40px; }
+        .veille-buttons { display: flex; gap: 15px; }
+
+        .veille-btn {
+            flex: 1;
+            padding: 15px 30px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+        }
+
+        .veille-btn-primary { background: var(--black); color: var(--white); border: 2px solid var(--black); }
+        .veille-btn-primary:hover { background: var(--white); color: var(--black); }
+        .veille-btn-secondary { background: transparent; color: var(--black); border: 2px solid var(--black); }
+        .veille-btn-secondary:hover { background: var(--black); color: var(--white); }
+
+        /* ===== DOCUMENTS ===== */
+        .documents-intro { text-align: center; max-width: 800px; margin: 0 auto 60px; }
+        .documents-grid { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; max-width: 1000px; margin: 0 auto; }
+
+        .document-card {
+            background: var(--white);
+            border: 1px solid var(--gray);
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            width: 320px;
+            transition: all 0.3s ease;
+        }
+
+        .document-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: var(--black); }
+        .document-icon { font-size: 48px; margin-bottom: 20px; }
+        .document-card h3 { font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 15px; }
+        .document-card p { font-size: 14px; line-height: 1.6; color: var(--gray-lighter); margin-bottom: 25px; }
+
+        .document-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--black);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--black);
+        }
+
+        .document-btn:hover { background: var(--white); color: var(--black); }
+
+        /* ===== FOOTER ===== */
+        footer { padding: 60px 80px; background: var(--gray-dark); border-top: 1px solid rgba(0,0,0,0.1); }
+
+        .footer-content { display: flex; justify-content: space-between; align-items: center; }
+        .footer-info p { font-size: 14px; color: var(--gray-lighter); margin-bottom: 5px; }
+        .footer-info strong { color: var(--black); }
+        .footer-text { font-size: 13px; color: var(--gray-light); }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             nav, section, footer { padding-left: 40px; padding-right: 40px; }
             .accueil-hero { padding: 120px 40px 60px; }
             .hero-content h1 { font-size: clamp(36px, 7vw, 56px); }
-            .veille-cards-container { grid-template-columns: 1fr; gap: 40px; }
-            .parcours-cards-container { grid-template-columns: 1fr; gap: 40px; }
-            .bts-options-container { grid-template-columns: 1fr; gap: 40px; }
+            .veille-cards-container, .parcours-cards-container, .bts-options-container { grid-template-columns: 1fr; gap: 40px; }
             .projets-grid { grid-template-columns: 1fr; gap: 40px; }
             .certifications-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
         }
@@ -1036,110 +727,35 @@
             .hero-content h1 { font-size: 36px; margin-bottom: 30px; }
             .hero-content p { font-size: 16px; margin-bottom: 20px; }
             .hero-content p:last-of-type { margin-bottom: 35px; }
-            .cta-button { width: 100%; max-width: 300px; padding: 16px 35px; font-size: 13px; }
-            .form-row { grid-template-columns: 1fr; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .cta-button, .cv-button { width: 100%; max-width: 300px; padding: 16px 35px; font-size: 13px; justify-content: center; }
             .footer-content { flex-direction: column; gap: 30px; text-align: center; }
-            .veille-intro-content { padding: 40px 30px; }
+            .veille-intro-content, .bts-intro-content, .parcours-intro-content { padding: 40px 30px; }
             .veille-card { padding: 40px 30px; }
             .veille-buttons { flex-direction: column; }
-            .parcours-intro-content { padding: 40px 30px; }
-            .parcours-card-content { padding: 40px 30px; }
+            .parcours-card-content, .bts-option-card { padding: 40px 30px; }
             .parcours-buttons { flex-direction: column; }
-            .bts-intro-content { padding: 40px 30px; }
-            .bts-option-card { padding: 40px 30px; }
             .projet-card-content { padding: 30px 25px; }
             .certifications-grid { grid-template-columns: 1fr; gap: 25px; }
             .cert-card { padding: 35px 25px; }
             .cert-pix { padding: 40px 30px; }
+            .documents-grid { gap: 25px; }
+            .document-card { width: 100%; max-width: 320px; padding: 30px 25px; }
         }
-
-
-        /* PAGE DOCUMENTS - STYLE RAPIDE */
-.documents-intro {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 60px;
-}
-
-.documents-grid {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.document-card {
-    background: var(--white);
-    border: 1px solid var(--gray);
-    border-radius: 12px;
-    padding: 40px 30px;
-    text-align: center;
-    width: 320px;
-    transition: all 0.3s ease;
-}
-
-.document-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-    border-color: var(--black);
-}
-
-.document-icon {
-    font-size: 48px;
-    margin-bottom: 20px;
-}
-
-.document-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
-    margin-bottom: 15px;
-    color: var(--black);
-}
-
-.document-card p {
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--gray-lighter);
-    margin-bottom: 25px;
-}
-
-.document-btn {
-    display: inline-block;
-    padding: 12px 30px;
-    background: var(--black);
-    color: var(--white);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 13px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border-radius: 30px;
-    transition: all 0.3s ease;
-    border: 2px solid var(--black);
-}
-
-.document-btn:hover {
-    background: var(--white);
-    color: var(--black);
-}
-
-@media (max-width: 768px) {
-    .documents-grid {
-        gap: 25px;
-    }
-    .document-card {
-        width: 100%;
-        max-width: 320px;
-        padding: 30px 25px;
-    }
-}
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
+    <!-- MODAL IMAGE CERTIFICAT -->
+    <div class="modal-overlay" id="certModal" onclick="closeModal(event)">
+        <div class="modal-inner">
+            <button class="modal-close" onclick="closeModal()">✕ Fermer</button>
+            <img id="modalImg" src="" alt="Certificat">
+            <p class="modal-caption" id="modalCaption"></p>
+        </div>
+    </div>
+
+    <!-- NAV -->
     <nav>
         <div class="logo" onclick="showPage('accueil', event)"></div>
         <ul class="nav-menu">
@@ -1164,7 +780,13 @@
                 <p>
                     Cette formation me permet d'acquérir des compétences solides en développement de logiciels et en gestion de projets informatiques.
                 </p>
-                <a href="#" class="cta-button" onclick="showPage('projet', event)">Découvrir mes projets</a>
+                <!-- BOUTONS HERO -->
+                <div class="hero-buttons">
+                    <a href="#" class="cta-button" onclick="showPage('projet', event)">Découvrir mes projets</a>
+                    <a href="pdf/cv_mirna.pdf" target="_blank" rel="noopener noreferrer" class="cv-button">
+                        📄 Télécharger mon CV
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -1173,7 +795,6 @@
     <div id="bts-sio" class="page">
         <section>
             <h1 class="section-title">BTS SIO</h1>
-            
             <div class="bts-intro">
                 <div class="bts-intro-content">
                     <h2>BTS SIO - Services Informatiques aux Organisations</h2>
@@ -1182,36 +803,26 @@
                     </p>
                 </div>
             </div>
-
             <div class="bts-options-container">
-                <!-- SLAM Card -->
                 <div class="bts-option-card slam">
                     <span class="bts-option-badge">Ma spécialité</span>
                     <h3>SLAM</h3>
                     <p class="subtitle">Solutions Logicielles et Applications Métiers</p>
-                    <p>
-                        La spécialité SLAM forme des développeurs capables de concevoir, développer et maintenir des applications informatiques. Les étudiants apprennent la programmation orientée objet, la gestion de bases de données, le développement web et mobile, ainsi que les méthodologies de gestion de projets.
-                    </p>
-                    
+                    <p>La spécialité SLAM forme des développeurs capables de concevoir, développer et maintenir des applications informatiques. Les étudiants apprennent la programmation orientée objet, la gestion de bases de données, le développement web et mobile, ainsi que les méthodologies de gestion de projets.</p>
                     <div class="bts-competences">
                         <h4>Compétences acquises</h4>
                         <ul>
-                            <li>Développement html css js</li>
+                            <li>Développement HTML CSS JS</li>
                             <li>Conception et administration de bases de données</li>
                             <li>Programmation orientée objet</li>
                         </ul>
                     </div>
                 </div>
-
-                <!-- SISR Card -->
                 <div class="bts-option-card sisr">
                     <span class="bts-option-badge">Autre option</span>
                     <h3>SISR</h3>
                     <p class="subtitle">Solutions d'Infrastructure, Systèmes et Réseaux</p>
-                    <p>
-                        La spécialité SISR forme des techniciens capables d'administrer et de sécuriser les infrastructures réseaux et systèmes. Les étudiants apprennent à installer, configurer et maintenir les équipements réseaux, gérer les serveurs et assurer la cybersécurité des systèmes d'information.
-                    </p>
-                    
+                    <p>La spécialité SISR forme des techniciens capables d'administrer et de sécuriser les infrastructures réseaux et systèmes. Les étudiants apprennent à installer, configurer et maintenir les équipements réseaux, gérer les serveurs et assurer la cybersécurité des systèmes d'information.</p>
                     <div class="bts-competences">
                         <h4>Compétences acquises</h4>
                         <ul>
@@ -1222,27 +833,24 @@
                     </div>
                 </div>
             </div>
-
         </section>
-
         <footer>
             <div class="footer-content">
                 <div class="footer-info">
                     <p><strong>Portfolio</strong></p>
                     <p>Chaque projet représente mon investissement, mes compétences et ma volonté de progresser.</p>
-                    <p style="margin-top: 20px;"><strong>Contact:</strong> +33 7 45 93 27 97</p>
-                    <p><strong>Mail:</strong> abdoumirna756@gmail.com</p>
+                    <p style="margin-top: 20px;"><strong>Contact :</strong> +33 7 45 93 27 97</p>
+                    <p><strong>Mail :</strong> abdoumirna756@gmail.com</p>
                 </div>
                 <p class="footer-text">© 2026 Abdou Mirna - Portfolio</p>
             </div>
         </footer>
     </div>
 
-    <!-- PAGE PARCOURS PROFESSIONNEL -->
+    <!-- PAGE PARCOURS -->
     <div id="parcours" class="page">
         <section>
             <h1 class="section-title">Parcours professionnel</h1>
-            
             <div class="parcours-intro">
                 <div class="parcours-intro-content">
                     <p style="font-size: 18px; line-height: 1.9; color: var(--gray-lighter);">
@@ -1250,27 +858,21 @@
                     </p>
                 </div>
             </div>
-
             <div class="parcours-cards-container">
-                <!-- Stage ARCV Card -->
                 <div class="parcours-card">
                     <a href="Stages/Stage_01.html" style="display: block; text-decoration: none; color: inherit;">
-                        <img class="parcours-card-image" src="https://horizons-cdn.hostinger.com/d5564037-9b22-4e1e-9f0c-2fd1f8c09fe6/dced77d3ca786b1fde1f08072b0ac283.png" alt="ARCV" style="object-fit: contain; background: var(--gray-dark);">
+                        <img class="parcours-card-image" src="https://horizons-cdn.hostinger.com/d5564037-9b22-4e1e-9f0c-2fd1f8c09fe6/dced77d3ca786b1fde1f08072b0ac283.png" alt="ACRCV" style="object-fit: contain; background: var(--gray-dark);">
                     </a>
                     <div class="parcours-card-content">
                         <p class="parcours-number">Stage 01</p>
                         <h3>ACRCV</h3>
-                        <p>
-                            J'ai obtenu mon stage chez l'ACRCV (Association Culturelle des ressortissants Comoriens de Villiers-sur-Marne) grâce à un ami à mon père qui m'a recommandé. Pendant mon stage, j'ai travaillé sur la création et la refonte du site web pour améliorer son design et son utilisation ce qui m'a permis d'intégrer une structure engagée dans la communauté.
-                        </p>
+                        <p>J'ai obtenu mon stage chez l'ACRCV grâce à un ami à mon père qui m'a recommandé. Pendant mon stage, j'ai travaillé sur la création et la refonte du site web pour améliorer son design et son utilisation.</p>
                         <div class="parcours-buttons">
                             <a href="Stages/Stage_01.html" class="parcours-btn parcours-btn-primary">Voir les détails</a>
                             <a href="#" class="parcours-btn parcours-btn-secondary">Note de synthèse</a>
                         </div>
                     </div>
                 </div>
-
-                <!-- Stage Restaurant Card -->
                 <div class="parcours-card">
                     <a href="Stages/Stage_02.html" style="display: block; text-decoration: none; color: inherit;">
                         <img class="parcours-card-image" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800" alt="Restaurant">
@@ -1278,9 +880,7 @@
                     <div class="parcours-card-content">
                         <p class="parcours-number">Stage 02</p>
                         <h3>Robigus Restaurant</h3>
-                        <p>
-                            J'ai réalisé mon second stage chez Robigus Restaurant grâce à un camarade de classe, dont le père est le propriétaire. Durant ce stage, j'ai conçu un site web pour le restaurant dans le but d'améliorer son image et sa présence sur internet.
-                        </p>
+                        <p>J'ai réalisé mon second stage chez Robigus Restaurant grâce à un camarade de classe, dont le père est le propriétaire. Durant ce stage, j'ai conçu un site web pour le restaurant dans le but d'améliorer son image et sa présence sur internet.</p>
                         <div class="parcours-buttons">
                             <a href="Stages/Stage_02.html" class="parcours-btn parcours-btn-primary">Voir les détails</a>
                             <a href="pdf/NOTE DE SYNTHESE ADBOU MINRA.pdf" target="_blank" rel="noopener noreferrer" class="parcours-btn parcours-btn-secondary">Note de synthèse</a>
@@ -1289,16 +889,14 @@
                     </div>
                 </div>
             </div>
-
         </section>
-
         <footer>
             <div class="footer-content">
                 <div class="footer-info">
                     <p><strong>Portfolio</strong></p>
                     <p>Chaque projet représente mon investissement, mes compétences et ma volonté de progresser.</p>
-                    <p style="margin-top: 20px;"><strong>Contact:</strong> +33 7 45 93 27 97</p>
-                    <p><strong>Mail:</strong> abdoumirna756@gmail.com</p>
+                    <p style="margin-top: 20px;"><strong>Contact :</strong> +33 7 45 93 27 97</p>
+                    <p><strong>Mail :</strong> abdoumirna756@gmail.com</p>
                 </div>
                 <p class="footer-text">© 2026 Abdou Mirna - Portfolio</p>
             </div>
@@ -1309,17 +907,12 @@
     <div id="projet" class="page">
         <section>
             <h1 class="section-title">Projets</h1>
-            
             <div class="projet-intro">
                 <h2>Bienvenue</h2>
                 <h3>Présentations de mes projets</h3>
-                <p>
-                    Pendant mon BTS, j'ai réalisé plusieurs projets qui montrent que je sais appliquer ce que j'apprends en cours dans des situations concrètes. Ces projets m'ont permis d'améliorer mes compétences, de travailler en équipe et d'obtenir des résultats réels. Ils m'ont aussi aidé à prendre confiance, à relever des défis et à m'impliquer sérieusement dans le travail.
-                </p>
+                <p>Pendant mon BTS, j'ai réalisé plusieurs projets qui montrent que je sais appliquer ce que j'apprends en cours dans des situations concrètes. Ces projets m'ont permis d'améliorer mes compétences, de travailler en équipe et d'obtenir des résultats réels.</p>
             </div>
-
             <div class="projets-grid">
-                <!-- Projet 1: Aventures Alpines -->
                 <div class="projet-card">
                     <a href="Projets/Projets_01.html" style="display: block; text-decoration: none; color: inherit;">
                         <img class="projet-card-image" src="https://jeromeobiols.com/wordpress/wp-content/uploads/photo-montagne-vallee-blanche-chamonix-mont-blanc.jpg" alt="Aventures Alpines">
@@ -1327,20 +920,16 @@
                     <div class="projet-card-content">
                         <span class="projet-tag">Projet 01</span>
                         <h3>Aventures Alpines</h3>
-                        <p>
-                            Création d'un site web pour une agence de voyages spécialisée dans les aventures en montagne, avec système de réservation intégré.
-                        </p>
+                        <p>Création d'un site web pour une agence de voyages spécialisée dans les aventures en montagne, avec système de réservation intégré.</p>
                         <div class="projet-tech">
-                            <span class="tech-badge">React </span>
-                            <span class="tech-badge">Node Js</span>
+                            <span class="tech-badge">React</span>
+                            <span class="tech-badge">Node.js</span>
                             <span class="tech-badge">JavaScript</span>
                             <span class="tech-badge">MySQL</span>
                         </div>
                         <a href="Projets/Projets_01.html" class="projet-link">Voir le projet</a>
                     </div>
                 </div>
-
-                <!-- Projet 2: JavaStock -->
                 <div class="projet-card">
                     <a href="Projets/Projets_02.html" style="display: block; text-decoration: none; color: inherit;">
                         <img class="projet-card-image" src="https://e-solution.com/storage/component/24-10/wsNrsLA4PCx9lInWWMXyWKj7TonC31zsQwXX2oQA.png" alt="JavaStock">
@@ -1348,28 +937,24 @@
                     <div class="projet-card-content">
                         <span class="projet-tag">Projet 02</span>
                         <h3>JavaStock</h3>
-                        <p>
-                            Application de gestion de stock développée en Java, permettant le suivi des inventaires, des commandes et des fournisseurs en temps réel.
-                        </p>
+                        <p>Application de gestion de stock développée en Java, permettant le suivi des inventaires, des commandes et des fournisseurs en temps réel.</p>
                         <div class="projet-tech">
                             <span class="tech-badge">Java</span>
-                            <span class="tech-badge">PostGresSQL</span>
+                            <span class="tech-badge">PostgreSQL</span>
                             <span class="tech-badge">JavaSwing</span>
                         </div>
                         <a href="Projets/Projets_02.html" class="projet-link">Voir le projet</a>
                     </div>
                 </div>
             </div>
-
         </section>
-
         <footer>
             <div class="footer-content">
                 <div class="footer-info">
                     <p><strong>Portfolio</strong></p>
                     <p>Chaque projet représente mon investissement, mes compétences et ma volonté de progresser.</p>
-                    <p style="margin-top: 20px;"><strong>Contact:</strong> +33 7 45 93 27 97</p>
-                    <p><strong>Mail:</strong> abdoumirna756@gmail.com</p>
+                    <p style="margin-top: 20px;"><strong>Contact :</strong> +33 7 45 93 27 97</p>
+                    <p><strong>Mail :</strong> abdoumirna756@gmail.com</p>
                 </div>
                 <p class="footer-text">© 2026 Abdou Mirna - Portfolio</p>
             </div>
@@ -1380,129 +965,93 @@
     <div id="certification" class="page">
         <section>
             <h1 class="section-title">Mes Certifications</h1>
-            
             <div class="certification-intro">
-                <p>
-                    Tout au long de ma formation, j'ai suivi plusieurs certifications reconnues pour renforcer mes compétences techniques et théoriques. Ces formations couvrent le développement logiciel, la cybersécurité, la gestion de projet et l'intelligence artificielle.
-                </p>
+                <p>Tout au long de ma formation, j'ai suivi plusieurs certifications reconnues pour renforcer mes compétences techniques et théoriques. <strong>Cliquez sur une carte</strong> pour voir le certificat.</p>
             </div>
 
             <!-- Développement & Versioning -->
             <div class="certification-category">
-                <div class="category-header">
-                    <h2 class="category-title">Développement & Versioning</h2>
-                </div>
+                <div class="category-header"><h2 class="category-title">Développement & Versioning</h2></div>
                 <div class="certifications-grid">
-                    <div class="cert-card">
+                    <div class="cert-card" onclick="openModal('images/Open_Classroom/git_github.png', 'Git & GitHub')">
                         <h4>Git & GitHub</h4>
                         <p>Gérez du code avec Git et GitHub</p>
                         <span class="cert-provider">OpenClassrooms</span>
+                        <span class="cert-hover-badge">Voir le certificat →</span>
                     </div>
-                    <div class="cert-card">
+                    <div class="cert-card" onclick="openModal('images/Open_Classroom/qualite_logicielle.png', 'Qualité Logicielle')">
                         <h4>Qualité Logicielle</h4>
                         <p>Initiez-vous au test et à la qualité logiciel</p>
                         <span class="cert-provider">OpenClassrooms</span>
+                        <span class="cert-hover-badge">Voir le certificat →</span>
                     </div>
-                    <div class="cert-card">
-                        <h4>Développement Sécurisé</h4>
-                        <p>Bonnes pratiques de codage et sécurité</p>
-                        <span class="cert-provider">OpenClassrooms</span>
-                    </div>
+                   
                 </div>
             </div>
 
             <!-- Cybersécurité -->
             <div class="certification-category">
-                <div class="category-header">
-                    <h2 class="category-title">Cybersécurité</h2>
-                </div>
+                <div class="category-header"><h2 class="category-title">Cybersécurité</h2></div>
                 <div class="certifications-grid">
-                    <div class="cert-card">
-                        <h4>Sécurisez vos applications</h4>
-                        <p>Apprendre les réflexes de sécurité en développement</p>
-                        <span class="cert-provider">OpenClassrooms</span>
-                    </div>
-                    <div class="cert-card">
+        
+                    <div class="cert-card" onclick="openModal('images/Open_Classroom/gerez_les_risques.png', 'Risques SI')">
                         <h4>Risques SI</h4>
                         <p>Analysez et gérez des risques SI</p>
                         <span class="cert-provider">OpenClassrooms</span>
+                        <span class="cert-hover-badge">Voir le certificat →</span>
                     </div>
-                    <div class="cert-card">
+                    <div class="cert-card" onclick="openModal('images/Open_Classroom/securite_numerique.png', 'Sécurité Numérique')">
                         <h4>Sécurité Numérique</h4>
                         <p>Découvrez les bases de la sécurité numérique</p>
                         <span class="cert-provider">OpenClassrooms</span>
+                        <span class="cert-hover-badge">Voir le certificat →</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Gestion de Projet & Méthode -->
-            <div class="certification-category">
-                <div class="category-header">
-                    <h2 class="category-title">Gestion de Projet & Méthode</h2>
-                </div>
-                <div class="certifications-grid">
-                    <div class="cert-card">
-                        <h4>Méthode Agile</h4>
-                        <p>Initiez-vous à la gestion de projet agile</p>
-                        <span class="cert-provider">OpenClassrooms</span>
-                    </div>
-                    <div class="cert-card">
-                        <h4>Gestion de projet</h4>
-                        <p>Gérez votre projet informatique facilement</p>
-                        <span class="cert-provider">OpenClassrooms</span>
-                    </div>
-                    <div class="cert-card">
-                        <h4>Documentation Technique</h4>
-                        <p>Écrivez la documentation de votre projet</p>
-                        <span class="cert-provider">OpenClassrooms</span>
-                    </div>
-                </div>
-            </div>
+      
 
             <!-- Intelligence Artificielle -->
             <div class="certification-category">
-                <div class="category-header">
-                    <h2 class="category-title">Intelligence Artificielle</h2>
-                </div>
+                <div class="category-header"><h2 class="category-title">Intelligence Artificielle</h2></div>
                 <div class="certifications-grid">
-                    <div class="cert-card">
+                    <div class="cert-card" onclick="openModal('images/Open_Classroom/deep_learning.png', 'Deep Learning')">
                         <h4>Deep Learning</h4>
                         <p>Initiez-vous au Deep Learning</p>
                         <span class="cert-provider">OpenClassrooms</span>
+                        <span class="cert-hover-badge">Voir le certificat →</span>
                     </div>
-                    <div class="cert-card">
+                    <div class="cert-card" onclick="openModal('images/Open_Classroom/objectif_ia.png', 'Objectif IA')">
                         <h4>Objectif IA</h4>
                         <p>Initiez-vous à l'intelligence artificielle</p>
                         <span class="cert-provider">OpenClassrooms</span>
+                        <span class="cert-hover-badge">Voir le certificat →</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Certification PIX -->
+            <!-- PIX -->
             <div class="certification-category">
-                <div class="category-header">
-                    <h2 class="category-title">Certification Officielle</h2>
-                </div>
+                <div class="category-header"><h2 class="category-title">Certification Officielle</h2></div>
                 <div style="max-width: 700px; margin: 0 auto;">
                     <div class="cert-card cert-pix">
                         <h4>Certification PIX</h4>
                         <p>Évaluation et certification des compétences numériques (Reconnu par l'État)</p>
                         <span class="cert-badge">Certifié 2026</span>
                         <br>
-                        <a href="pdf/certification-pix.pdf" class="cert-pix-button">Consulter le certificat</a>
+                        <a href="pdf/certification-pix.pdf" target="_blank" class="cert-pix-button">Consulter le certificat</a>
                     </div>
                 </div>
             </div>
 
         </section>
-
         <footer>
             <div class="footer-content">
                 <div class="footer-info">
                     <p><strong>Portfolio</strong></p>
                     <p>Chaque certification représente mon engagement dans l'apprentissage continu.</p>
-                    <p style="margin-top: 20px;"><strong>Contact:</strong> +33 7 45 93 27 97</p>
-                    <p><strong>Mail:</strong> abdoumirna756@gmail.com</p>
+                    <p style="margin-top: 20px;"><strong>Contact :</strong> +33 7 45 93 27 97</p>
+                    <p><strong>Mail :</strong> abdoumirna756@gmail.com</p>
                 </div>
                 <p class="footer-text">© 2026 Abdou Mirna - Portfolio</p>
             </div>
@@ -1513,23 +1062,18 @@
     <div id="documents" class="page">
         <section>
             <h1 class="section-title">Documents officiels</h1>
-            
             <div class="documents-intro">
                 <p style="font-size: 18px; line-height: 1.9; color: var(--gray-lighter); text-align: center; max-width: 800px; margin: 0 auto 80px;">
                     Retrouvez l'ensemble de mes documents officiels : CV, tableau de synthèse et autres documents administratifs liés à mon parcours.
                 </p>
             </div>
-
             <div class="documents-grid">
-                <!-- CV -->
                 <div class="document-card">
                     <div class="document-icon">📄</div>
                     <h3>Curriculum Vitae</h3>
                     <p>Mon CV détaillant mon parcours, mes compétences et mes expériences professionnelles.</p>
                     <a href="pdf/CV_Abdou_Mirna.pdf" target="_blank" rel="noopener noreferrer" class="document-btn">Télécharger le CV</a>
                 </div>
-
-                <!-- Tableau de synthèse -->
                 <div class="document-card">
                     <div class="document-icon">📊</div>
                     <h3>Tableau de synthèse</h3>
@@ -1537,16 +1081,14 @@
                     <a href="pdf/Tableau_Synthese_Abdou_Mirna.pdf" target="_blank" rel="noopener noreferrer" class="document-btn">Télécharger le tableau</a>
                 </div>
             </div>
-
         </section>
-
         <footer>
             <div class="footer-content">
                 <div class="footer-info">
                     <p><strong>Portfolio</strong></p>
                     <p>Chaque projet représente mon investissement, mes compétences et ma volonté de progresser.</p>
-                    <p style="margin-top: 20px;"><strong>Contact:</strong> +33 7 45 93 27 97</p>
-                    <p><strong>Mail:</strong> abdoumirna756@gmail.com</p>
+                    <p style="margin-top: 20px;"><strong>Contact :</strong> +33 7 45 93 27 97</p>
+                    <p><strong>Mail :</strong> abdoumirna756@gmail.com</p>
                 </div>
                 <p class="footer-text">© 2026 Abdou Mirna - Portfolio</p>
             </div>
@@ -1557,67 +1099,54 @@
     <div id="veille" class="page">
         <section>
             <h1 class="section-title">Veille</h1>
-
             <div class="veille-intro">
                 <div class="veille-intro-content">
                     <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 36px; margin-bottom: 30px;">Qu'est-ce qu'une veille ?</h2>
                     <p style="font-size: 18px; line-height: 1.9; color: var(--gray-lighter);">
-                        Une veille consiste à collecter, analyser et surveiller en continu des informations stratégiques dans un domaine spécifique, afin de rester informé des évolutions, tendances ou menaces qui pourraient avoir un impact. Elle permet d'anticiper les changements, d'identifier des opportunités et de réagir face à des risques potentiels. La veille peut être technologique, économique, concurrentielle, juridique ou encore cyber, selon les besoins et les objectifs. Son importance réside dans sa capacité à éclairer la prise de décision, qu'il s'agisse d'innover, d'améliorer des produits ou services, de se positionner face à des concurrents ou de protéger ses actifs stratégiques.
+                        Une veille consiste à collecter, analyser et surveiller en continu des informations stratégiques dans un domaine spécifique, afin de rester informé des évolutions, tendances ou menaces qui pourraient avoir un impact. Elle permet d'anticiper les changements, d'identifier des opportunités et de réagir face à des risques potentiels.
                     </p>
                 </div>
             </div>
-
             <div class="veille-cards-container">
-                <!-- Veille Technologique Card -->
                 <div class="veille-card">
-                    <div class="veille-card-inner">
-                        <div class="veille-card-icon">
-                            <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="20" y="25" width="60" height="45" rx="5"/>
-                                <rect x="15" y="20" width="70" height="50" rx="5"/>
-                                <path d="M35 85 L35 75 L65 75 L65 85"/>
-                                <path d="M30 85 L70 85"/>
-                                <circle cx="50" cy="50" r="8"/>
-                            </svg>
-                        </div>
-                        <h3>Veille Technologique</h3>
-                        <p>Suivez les dernières innovations, technologies émergentes et tendances du développement logiciel pour rester à la pointe.</p>
-                        <div class="veille-buttons">
-                         
-                            <a href="Veille/Veille_1.html" class="veille-btn veille-btn-secondary">Consulter</a>
-                        </div>
+                    <div class="veille-card-icon">
+                        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="20" y="25" width="60" height="45" rx="5"/>
+                            <rect x="15" y="20" width="70" height="50" rx="5"/>
+                            <path d="M35 85 L35 75 L65 75 L65 85"/>
+                            <path d="M30 85 L70 85"/>
+                            <circle cx="50" cy="50" r="8"/>
+                        </svg>
+                    </div>
+                    <h3>Veille Technologique</h3>
+                    <p>Les Passkeys — Comment l'authentification biométrique et cryptographique redéfinit la sécurité numérique et signe la fin des mots de passe.</p>
+                    <div class="veille-buttons">
+                        <a href="Veille/Veille_1.html" class="veille-btn veille-btn-secondary">Consulter</a>
                     </div>
                 </div>
-
-                <!-- Veille Cybersécurité Card -->
                 <div class="veille-card">
-                    <div class="veille-card-inner">
-                        <div class="veille-card-icon">
-                            <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M50 20 L50 35 M35 35 L65 35 M35 35 L35 70 M65 35 L65 70 M35 70 L50 80 L65 70"/>
-                                <circle cx="50" cy="52" r="8"/>
-                                <path d="M50 44 L50 38"/>
-                            </svg>
-                        </div>
-                        <h3>Veille Cybersécurité</h3>
-                        <p>Le Phishing — De l'hameçon artisanal à l'arme numérique de masse. Découvrez l'évolution de cette menace de 1990 à aujourd'hui.</p>
-                        <div class="veille-buttons">
-                         
-                            <a href="Veille/Veille_2.html" class="veille-btn veille-btn-secondary">Consulter</a>
-                        </div>
+                    <div class="veille-card-icon">
+                        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M50 20 L50 35 M35 35 L65 35 M35 35 L35 70 M65 35 L65 70 M35 70 L50 80 L65 70"/>
+                            <circle cx="50" cy="52" r="8"/>
+                            <path d="M50 44 L50 38"/>
+                        </svg>
+                    </div>
+                    <h3>Veille Cybersécurité</h3>
+                    <p>Le Phishing — De l'hameçon artisanal à l'arme numérique de masse. Découvrez l'évolution de cette menace de 1990 à aujourd'hui.</p>
+                    <div class="veille-buttons">
+                        <a href="Veille/Veille_2.html" class="veille-btn veille-btn-secondary">Consulter</a>
                     </div>
                 </div>
             </div>
-
         </section>
-
         <footer>
             <div class="footer-content">
                 <div class="footer-info">
                     <p><strong>Portfolio</strong></p>
                     <p>Chaque projet représente mon investissement, mes compétences et ma volonté de progresser.</p>
-                    <p style="margin-top: 20px;"><strong>Contact:</strong> +33 7 45 93 27 97</p>
-                    <p><strong>Mail:</strong> abdoumirna756@gmail.com</p>
+                    <p style="margin-top: 20px;"><strong>Contact :</strong> +33 7 45 93 27 97</p>
+                    <p><strong>Mail :</strong> abdoumirna756@gmail.com</p>
                 </div>
                 <p class="footer-text">© 2026 Abdou Mirna - Portfolio</p>
             </div>
@@ -1625,58 +1154,54 @@
     </div>
 
     <script>
-        // Version corrigée de showPage qui fonctionne correctement
+        // ===== NAVIGATION =====
         function showPage(pageId, event) {
-            // Empêcher le comportement par défaut si event existe
-            if (event) {
-                event.preventDefault();
-            }
-            
-            // Cacher toutes les pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Afficher la page sélectionnée
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-            }
-            
-            // Mettre à jour la classe active sur les liens de navigation
+            if (event) event.preventDefault();
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            const target = document.getElementById(pageId);
+            if (target) target.classList.add('active');
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
-                // Vérifier si le lien correspond à la page
-                const onclickAttr = link.getAttribute('onclick');
-                if (onclickAttr && onclickAttr.includes(pageId)) {
-                    link.classList.add('active');
-                }
+                if (link.getAttribute('onclick')?.includes(pageId)) link.classList.add('active');
             });
-            
-            // Sauvegarder la page active
             localStorage.setItem('currentPage', pageId);
-            
-            // Scroll en haut de page
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Restaurer la page au chargement
-        window.addEventListener('DOMContentLoaded', function() {
-            const savedPage = localStorage.getItem('currentPage');
-            if (savedPage && document.getElementById(savedPage)) {
-                document.querySelectorAll('.page').forEach(page => {
-                    page.classList.remove('active');
-                });
-                document.getElementById(savedPage).classList.add('active');
-                
-                // Activer le lien de navigation correspondant
+        window.addEventListener('DOMContentLoaded', function () {
+            const saved = localStorage.getItem('currentPage');
+            if (saved && document.getElementById(saved)) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById(saved).classList.add('active');
                 document.querySelectorAll('.nav-link').forEach(link => {
                     link.classList.remove('active');
-                    const onclickAttr = link.getAttribute('onclick');
-                    if (onclickAttr && onclickAttr.includes(savedPage)) {
-                        link.classList.add('active');
-                    }
+                    if (link.getAttribute('onclick')?.includes(saved)) link.classList.add('active');
                 });
+            }
+        });
+
+        // ===== MODAL CERTIFICATS =====
+        function openModal(imgSrc, caption) {
+            const modal = document.getElementById('certModal');
+            document.getElementById('modalImg').src = imgSrc;
+            document.getElementById('modalCaption').textContent = caption + ' — OpenClassrooms';
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(event) {
+            // Fermer si on clique sur l'overlay (pas sur l'image)
+            if (event && event.target !== document.getElementById('certModal')) return;
+            const modal = document.getElementById('certModal');
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // Fermer avec Échap
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                document.getElementById('certModal').classList.remove('open');
+                document.body.style.overflow = '';
             }
         });
     </script>
