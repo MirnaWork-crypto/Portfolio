@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veille Cybersécurité — Le Phishing | Abdou Mirna</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --gray-dark: #F5F5F5;
+            --gray: #E8E8E8;
+            --gray-light: #CCCCCC;
+            --gray-lighter: #666666;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            padding: 30px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            animation: navSlide 1s ease-out;
+        }
+
+        @keyframes navSlide {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-lighter);
+            text-decoration: none;
+            transition: color 0.3s;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-back:hover { color: var(--black); }
+        .nav-back::before { content: '←'; font-size: 16px; }
+
+        /* HERO */
+        .hero {
+            padding: 180px 80px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            animation: fadeUp 0.8s ease-out both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--black);
+            color: var(--white);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 35px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(48px, 7vw, 90px);
+            font-weight: 900;
+            line-height: 1.08;
+            letter-spacing: -2px;
+            margin-bottom: 30px;
+        }
+
+        .hero-sub {
+            font-size: clamp(16px, 1.5vw, 20px);
+            line-height: 1.8;
+            color: var(--gray-lighter);
+            max-width: 750px;
+            margin-bottom: 20px;
+        }
+
+        .hero-author {
+            font-size: 14px;
+            color: var(--gray-light);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-author strong { color: var(--black); }
+
+        /* DIVIDER */
+        .divider {
+            margin: 0 80px;
+            height: 1px;
+            background: rgba(0,0,0,0.1);
+        }
+
+        /* MAIN CONTENT */
+        .content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 80px 120px;
+        }
+
+        /* LABELS & HEADINGS */
+        .section-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gray-lighter);
+            margin-bottom: 20px;
+        }
+
+        .section-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(30px, 4vw, 48px);
+            font-weight: 700;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -12px; left: 0;
+            width: 50%; height: 2px;
+            background: var(--black);
+        }
+
+        /* INTRO BOX */
+        .intro-box {
+            background: var(--gray-dark);
+            border: 1px solid rgba(0,0,0,0.06);
+            padding: 55px 60px;
+            margin-bottom: 80px;
+        }
+
+        .intro-box p {
+            font-size: 18px;
+            line-height: 1.95;
+            color: var(--gray-lighter);
+            margin-bottom: 18px;
+        }
+
+        .intro-box p:last-child { margin-bottom: 0; }
+        .intro-box strong { color: var(--black); }
+
+        /* TIMELINE */
+        .timeline-wrapper { margin-bottom: 80px; }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            position: relative;
+            margin-top: 50px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 24px; left: 0; right: 0;
+            height: 1px;
+            background: var(--gray);
+        }
+
+        .timeline-item {
+            padding: 0 30px 0 0;
+            position: relative;
+        }
+
+        .timeline-dot {
+            width: 10px; height: 10px;
+            background: var(--black);
+            border-radius: 50%;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-year {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--black);
+            margin-bottom: 10px;
+        }
+
+        .timeline-text {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--gray-lighter);
+        }
+
+        .timeline-text strong { color: var(--black); }
+
+        /* CARDS GRID */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+            margin-bottom: 80px;
+        }
+
+        .cards-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+            margin-bottom: 80px;
+        }
+
+        .card {
+            background: var(--white);
+            border: 2px solid rgba(0,0,0,0.1);
+            padding: 45px 40px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: var(--black);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+            border-color: var(--black);
+        }
+
+        .card:hover::before { transform: scaleX(1); }
+
+        .card-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gray-lighter);
+            margin-bottom: 18px;
+        }
+
+        .card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 14px;
+        }
+
+        .card p {
+            font-size: 15px;
+            line-height: 1.75;
+            color: var(--gray-lighter);
+        }
+
+        .card p strong { color: var(--black); }
+
+        /* TABLE */
+        .table-wrapper { margin-bottom: 80px; }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 50px;
+            font-size: 15px;
+        }
+
+        .custom-table th {
+            padding: 16px 24px;
+            text-align: left;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray-lighter);
+            border-bottom: 2px solid var(--black);
+            background: var(--gray-dark);
+        }
+
+        .custom-table td {
+            padding: 18px 24px;
+            vertical-align: top;
+            color: var(--gray-lighter);
+            border-bottom: 1px solid var(--gray);
+            line-height: 1.6;
+        }
+
+        .custom-table td strong { color: var(--black); }
+        .custom-table tr:hover td { background: var(--gray-dark); }
+
+        /* PROS / CONS */
+        .pros-cons-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 50px;
+            margin-bottom: 80px;
+        }
+
+        .pros-box, .cons-box {
+            padding: 50px 45px;
+            border: 2px solid rgba(0,0,0,0.1);
+        }
+
+        .pros-box {
+            background: var(--white);
+            border-left: 4px solid var(--black);
+        }
+
+        .cons-box {
+            background: var(--gray-dark);
+            border-left: 4px solid var(--gray-lighter);
+        }
+
+        .pros-box h4, .cons-box h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 28px;
+            color: var(--black);
+        }
+
+        .check-list { list-style: none; padding: 0; }
+
+        .check-list li {
+            font-size: 15px;
+            color: var(--gray-lighter);
+            margin-bottom: 14px;
+            padding-left: 24px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .pros-box .check-list li::before {
+            content: '→';
+            position: absolute; left: 0;
+            color: var(--black); font-weight: 700;
+        }
+
+        .cons-box .check-list li::before {
+            content: '—';
+            position: absolute; left: 0;
+            color: var(--gray-lighter); font-weight: 700;
+        }
+
+        /* STAT STRIP */
+        .stat-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            border: 2px solid var(--black);
+            margin-bottom: 80px;
+            margin-top: 50px;
+        }
+
+        .stat-block {
+            padding: 45px 35px;
+            border-right: 1px solid rgba(0,0,0,0.1);
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+
+        .stat-block:last-child { border-right: none; }
+        .stat-block:hover { background: var(--gray-dark); }
+
+        .stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--black);
+            letter-spacing: -2px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--gray-lighter);
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        /* LEGAL */
+        .legal-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+            margin-bottom: 80px;
+        }
+
+        .legal-card {
+            background: var(--gray-dark);
+            border: 1px solid rgba(0,0,0,0.06);
+            padding: 40px 35px;
+            border-top: 3px solid var(--black);
+        }
+
+        .legal-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: var(--black);
+            color: var(--white);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .legal-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: var(--black);
+        }
+
+        .legal-card p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--gray-lighter);
+        }
+
+        .legal-card p strong { color: var(--black); }
+
+        /* PROTECTION GRID */
+        .protection-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+            margin-bottom: 80px;
+        }
+
+        .protection-card {
+            background: var(--white);
+            border: 2px solid rgba(0,0,0,0.1);
+            padding: 40px 35px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .protection-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
+            background: var(--black);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.5s ease;
+        }
+
+        .protection-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+            border-color: var(--black);
+        }
+
+        .protection-card:hover::before { transform: scaleY(1); }
+
+        .protection-icon {
+            font-size: 32px;
+            margin-bottom: 18px;
+            display: block;
+        }
+
+        .protection-card h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 12px;
+        }
+
+        .protection-card p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--gray-lighter);
+        }
+
+        .protection-card p strong { color: var(--black); }
+
+        /* CONCLUSION */
+        .conclusion-box {
+            background: var(--black);
+            color: var(--white);
+            padding: 70px 80px;
+            margin-bottom: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .conclusion-box::before {
+            content: '"';
+            position: absolute;
+            top: -20px; right: 60px;
+            font-family: 'Playfair Display', serif;
+            font-size: 250px;
+            color: rgba(255,255,255,0.04);
+            line-height: 1;
+        }
+
+        .conclusion-box .section-label { color: rgba(255,255,255,0.4); margin-bottom: 24px; }
+
+        .conclusion-box h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 3vw, 40px);
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--white);
+        }
+
+        .conclusion-box p {
+            font-size: 17px;
+            line-height: 1.9;
+            color: rgba(255,255,255,0.7);
+            max-width: 800px;
+            margin-bottom: 18px;
+        }
+
+        .conclusion-box p:last-of-type { margin-bottom: 40px; }
+
+        .conclusion-stats {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .c-stat {
+            border-left: 2px solid rgba(255,255,255,0.2);
+            padding-left: 20px;
+        }
+
+        .c-stat-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .c-stat-label {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 0.5px;
+        }
+
+        /* SOURCES */
+        .sources-wrapper {
+            background: var(--gray-dark);
+            border: 1px solid rgba(0,0,0,0.06);
+            padding: 55px 60px;
+        }
+
+        .sources-wrapper p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--gray-lighter);
+            margin-bottom: 28px;
+        }
+
+        .sources-wrapper strong { color: var(--black); }
+
+        .source-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+
+        .source-link {
+            display: inline-block;
+            padding: 10px 22px;
+            border: 2px solid var(--black);
+            background: var(--white);
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .source-link:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 60px 80px;
+            background: var(--gray-dark);
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-info p {
+            font-size: 14px;
+            color: var(--gray-lighter);
+            margin-bottom: 5px;
+        }
+
+        .footer-info strong { color: var(--black); }
+        .footer-text { font-size: 13px; color: var(--gray-light); }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            nav, .hero, .content, footer { padding-left: 40px; padding-right: 40px; }
+            .divider { margin: 0 40px; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .cards-grid-2 { grid-template-columns: 1fr; }
+            .timeline { grid-template-columns: 1fr 1fr; gap: 40px; }
+            .timeline::before { display: none; }
+            .stat-strip { grid-template-columns: repeat(2, 1fr); }
+            .stat-block { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.1); }
+            .legal-grid { grid-template-columns: 1fr; }
+            .protection-grid { grid-template-columns: 1fr; }
+            .conclusion-box { padding: 50px 40px; }
+            .sources-wrapper { padding: 40px; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 20px 30px; }
+            .hero { padding: 120px 30px 60px; }
+            .content { padding: 50px 30px 80px; }
+            footer { padding: 40px 30px; }
+            .intro-box { padding: 35px 30px; }
+            .timeline { grid-template-columns: 1fr; }
+            .pros-cons-grid { grid-template-columns: 1fr; }
+            .stat-strip { grid-template-columns: 1fr 1fr; }
+            .conclusion-stats { gap: 30px; }
+            .footer-content { flex-direction: column; gap: 20px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a href="../index.html" class="logo">AM</a>
+        <a href="../index.html" class="nav-back">Retour au portfolio</a>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-badge">Veille Cybersécurité · BTS SIO SLAM</div>
+        <h1>Le Phishing</h1>
+        <p class="hero-sub">
+            De l'hameçon artisanal des années 90 à l'arme numérique de masse pilotée par l'intelligence artificielle — comment la plus vieille menace du web continue d'évoluer et de faire des victimes.
+        </p>
+        <p class="hero-author">Présenté par <strong>Abdou Mirna</strong> — SIO 2 · Ensemble Sainte-Marie, Joinville-le-Pont</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <!-- INTRO -->
+        <div class="section-label">Problématique</div>
+        <h2 class="section-heading">Pourquoi cette veille ?</h2>
+        <div class="intro-box">
+            <p>
+                Ma veille porte sur le <strong>phishing</strong>, l'une des cybermenaces les plus répandues et les plus dangereuses de notre époque. Le terme vient de l'anglais <strong>fishing</strong> (pêcher) combiné au <strong>phreaking</strong> (piratage téléphonique) — car l'idée est simple : appâter la victime pour lui soutirer des informations confidentielles.
+            </p>
+            <p>
+                Contrairement à ce que l'on pourrait croire, le phishing n'est pas une menace du passé. Il représente encore aujourd'hui <strong>plus d'un tiers des violations de données</strong> mondiales. J'ai effectué cette veille en suivant des rapports de cybersécurité (Verizon DBIR, ANSSI), des alertes CERT-FR et des actualités spécialisées, afin de comprendre son évolution depuis ses origines jusqu'à ses formes les plus modernes dopées à l'IA.
+            </p>
+        </div>
+
+        <!-- CHIFFRES CLÉS -->
+        <div class="section-label">Chiffres clés</div>
+        <h2 class="section-heading">Le phishing en chiffres</h2>
+        <div class="stat-strip">
+            <div class="stat-block">
+                <span class="stat-value">36%</span>
+                <span class="stat-label">des violations de données impliquent du phishing (Verizon DBIR 2024)</span>
+            </div>
+            <div class="stat-block">
+                <span class="stat-value">3,4 Md</span>
+                <span class="stat-label">d'e-mails frauduleux envoyés chaque jour dans le monde</span>
+            </div>
+            <div class="stat-block">
+                <span class="stat-value">1990</span>
+                <span class="stat-label">Première attaque de phishing documentée sur AOL</span>
+            </div>
+            <div class="stat-block">
+                <span class="stat-value">+135%</span>
+                <span class="stat-label">d'augmentation des attaques depuis l'essor de l'IA générative</span>
+            </div>
+        </div>
+
+        <!-- HISTORIQUE -->
+        <div class="timeline-wrapper">
+            <div class="section-label">Évolution</div>
+            <h2 class="section-heading">Historique</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">1990 — 1995</div>
+                    <p class="timeline-text"><strong>Naissance du phishing.</strong> Des hackers ciblent les utilisateurs d'AOL en se faisant passer pour des employés du support technique pour voler des mots de passe. Le terme "phishing" est inventé sur les forums de hackers.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">2000 — 2010</div>
+                    <p class="timeline-text"><strong>Industrialisation.</strong> PayPal, eBay et les banques deviennent les cibles principales. Des millions d'e-mails frauduleux sont envoyés en masse. Les faux sites imitent parfaitement les originaux.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">2010 — 2020</div>
+                    <p class="timeline-text"><strong>Spear phishing & ciblage.</strong> Les attaques deviennent ultra-personnalisées. Le <em>spear phishing</em> vise des individus précis (dirigeants, DSI). Des États utilisent ces techniques pour l'espionnage industriel.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">2020 — Aujourd'hui</div>
+                    <p class="timeline-text"><strong>Ère de l'IA.</strong> Deepfakes vocaux, e-mails générés par IA indétectables, faux PDFs. Le phishing devient une arme de précision chirurgicale accessible à tous, même sans compétences techniques.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TYPES DE PHISHING -->
+        <div class="section-label">Taxonomy</div>
+        <h2 class="section-heading">Les différents types de phishing</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-number">Type 01</div>
+                <h3>Phishing classique</h3>
+                <p>Envoi massif d'e-mails frauduleux imitant des banques, services publics ou grandes plateformes. Le message contient un <strong>lien vers un faux site</strong> qui capture identifiants et mots de passe. C'est la forme la plus répandue — et la moins coûteuse à mettre en œuvre.</p>
+            </div>
+            <div class="card">
+                <div class="card-number">Type 02</div>
+                <h3>Spear Phishing</h3>
+                <p>Attaque <strong>ultra-ciblée et personnalisée</strong> sur une personne précise : un DRH, un comptable, un PDG. L'attaquant se renseigne sur sa cible (LinkedIn, réseaux sociaux) pour rendre le message totalement crédible. Taux de succès très élevé.</p>
+            </div>
+            <div class="card">
+                <div class="card-number">Type 03</div>
+                <h3>Whaling</h3>
+                <p>Forme de spear phishing qui vise exclusivement les <strong>hauts dirigeants</strong> (PDG, CFO, CTO). L'e-mail simule une demande urgente d'un partenaire ou d'un tribunal. Les sommes détournées peuvent atteindre des millions d'euros en une seule attaque.</p>
+            </div>
+            <div class="card">
+                <div class="card-number">Type 04</div>
+                <h3>Smishing</h3>
+                <p>Phishing par <strong>SMS</strong>. Le message se fait passer pour Chronopost, les impôts, la CAF ou une banque. Il contient un lien court piégé. Particulièrement efficace car les utilisateurs font davantage confiance aux SMS qu'aux e-mails.</p>
+            </div>
+            <div class="card">
+                <div class="card-number">Type 05</div>
+                <h3>Vishing</h3>
+                <p>Phishing par <strong>appel téléphonique</strong>. Un faux conseiller bancaire, une fausse administration ou un faux support technique appelle la victime pour obtenir des codes, numéros de carte ou virements. Les deepfakes vocaux rendent ces appels terrifiants de réalisme.</p>
+            </div>
+            <div class="card">
+                <div class="card-number">Type 06</div>
+                <h3>Phishing par IA (2024+)</h3>
+                <p>Nouvelle génération : des IA génèrent des <strong>e-mails sans fautes</strong>, personnalisés et contextuels à une vitesse industrielle. Les deepfakes vidéo permettent de simuler un appel vidéo d'un supérieur hiérarchique. La menace la plus difficile à détecter à ce jour.</p>
+            </div>
+        </div>
+
+        <!-- COMMENT ÇA MARCHE -->
+        <div class="section-label">Technique</div>
+        <h2 class="section-heading">Comment fonctionne une attaque ?</h2>
+        <div class="cards-grid-2">
+            <div class="card">
+                <div class="card-number">Étape 01 — Reconnaissance</div>
+                <h3>Collecte d'informations</h3>
+                <p>L'attaquant collecte des données sur sa cible via les <strong>réseaux sociaux, LinkedIn, le site de l'entreprise</strong>. Il identifie les outils utilisés, les partenaires, les noms des supérieurs hiérarchiques. Plus l'attaque est ciblée, plus cette phase est longue.</p>
+            </div>
+            <div class="card">
+                <div class="card-number">Étape 02 — Préparation</div>
+                <h3>Création du leurre</h3>
+                <p>L'attaquant crée un <strong>faux site web</strong> identique à l'original, rédige un e-mail crédible avec logo officiel et adresse email falsifiée. Il enregistre un domaine similaire (ex : <em>paypa1.com</em> au lieu de <em>paypal.com</em>).</p>
+            </div>
+            <div class="card">
+                <div class="card-number">Étape 03 — Attaque</div>
+                <h3>Envoi & hameçonnage</h3>
+                <p>L'e-mail ou le SMS est envoyé à la victime avec un prétexte d'<strong>urgence</strong> : "Votre compte sera suspendu", "Un virement non autorisé a été détecté". La pression psychologique pousse la victime à agir vite sans vérifier.</p>
+            </div>
+            <div class="card">
+                <div class="card-number">Étape 04 — Exploitation</div>
+                <h3>Récupération des données</h3>
+                <p>La victime saisit ses identifiants sur le faux site. L'attaquant récupère les données en <strong>temps réel</strong> et les utilise immédiatement : connexion aux comptes bancaires, vente sur le dark web ou accès au système d'information de l'entreprise.</p>
+            </div>
+        </div>
+
+        <!-- CIBLES & IMPACTS -->
+        <div class="table-wrapper">
+            <div class="section-label">Analyse</div>
+            <h2 class="section-heading">Cibles & impacts</h2>
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Cible</th>
+                        <th>Vecteur utilisé</th>
+                        <th>Impact potentiel</th>
+                        <th>Exemple réel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Particuliers</strong></td>
+                        <td>E-mail, SMS, appel téléphonique</td>
+                        <td>Vol d'identifiants, fraude bancaire, usurpation d'identité</td>
+                        <td>Faux e-mail "Colis en attente" de Chronopost</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Entreprises (PME)</strong></td>
+                        <td>Spear phishing par e-mail professionnel</td>
+                        <td>Fuite de données clients, ransomware, sabotage</td>
+                        <td>Fausse facture d'un fournisseur connu</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Grandes entreprises</strong></td>
+                        <td>Whaling, deepfake, compromission de compte</td>
+                        <td>Millions d'euros détournés, espionnage industriel</td>
+                        <td>Fraude au président — 38 M€ chez un sous-traitant Airbus</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Administrations & États</strong></td>
+                        <td>APT (menaces persistantes avancées), spear phishing</td>
+                        <td>Compromission d'infrastructures critiques, espionnage</td>
+                        <td>Attaque contre le Parlement européen (2023)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- PROTECTIONS -->
+        <div class="section-label">Défense</div>
+        <h2 class="section-heading">Comment se protéger ?</h2>
+        <div class="protection-grid">
+            <div class="protection-card">
+                <span class="protection-icon">🔐</span>
+                <h4>Authentification multi-facteurs (MFA)</h4>
+                <p>Même si un mot de passe est volé, le <strong>second facteur d'authentification</strong> (code SMS, application d'authentification) empêche l'accès. C'est la mesure de protection la plus efficace contre le phishing classique.</p>
+            </div>
+            <div class="protection-card">
+                <span class="protection-icon">🎓</span>
+                <h4>Sensibilisation & formation</h4>
+                <p>La <strong>première ligne de défense c'est l'humain</strong>. Des formations régulières et des simulations de phishing permettent aux employés de reconnaître les signaux d'alerte : urgence artificielle, expéditeur inhabituel, lien suspect.</p>
+            </div>
+            <div class="protection-card">
+                <span class="protection-icon">🛡️</span>
+                <h4>Filtres anti-phishing</h4>
+                <p>Les outils comme <strong>Google Safe Browsing, Microsoft Defender</strong> ou les solutions EDR d'entreprise analysent les e-mails entrants et bloquent les liens et pièces jointes malveillants avant qu'ils n'atteignent l'utilisateur.</p>
+            </div>
+            <div class="protection-card">
+                <span class="protection-icon">🔍</span>
+                <h4>Vérification systématique</h4>
+                <p>Toujours vérifier l'<strong>adresse de l'expéditeur, le domaine du lien</strong> (survol sans cliquer), et contacter directement l'organisation concernée par un canal officiel en cas de doute. Ne jamais agir sous la pression de l'urgence.</p>
+            </div>
+            <div class="protection-card">
+                <span class="protection-icon">📋</span>
+                <h4>Protocoles DMARC / SPF / DKIM</h4>
+                <p>Ces <strong>standards techniques</strong> permettent aux serveurs de messagerie de vérifier qu'un e-mail provient bien du domaine qu'il prétend représenter. Ils réduisent drastiquement l'usurpation d'identité d'expéditeur.</p>
+            </div>
+            <div class="protection-card">
+                <span class="protection-icon">⚠️</span>
+                <h4>Signalement & veille active</h4>
+                <p>En France, les victimes peuvent signaler les tentatives sur <strong>cybermalveillance.gouv.fr</strong>. Le CERT-FR publie des alertes régulières. Une veille active permet de se tenir informé des nouvelles campagnes en cours.</p>
+            </div>
+        </div>
+
+        <!-- CADRE LÉGAL -->
+        <div class="section-label">Réglementation</div>
+        <h2 class="section-heading">Cadre légal & sanctions</h2>
+        <div class="legal-grid">
+            <div class="legal-card">
+                <span class="legal-tag">Code pénal</span>
+                <h4>Droit français</h4>
+                <p>Le phishing est qualifié en France d'<strong>escroquerie informatique</strong> (art. 313-1 CP) et d'<strong>accès frauduleux à un système de traitement automatisé de données</strong> (art. 323-1 CP). Jusqu'à <strong>5 ans de prison et 375 000 € d'amende</strong>.</p>
+            </div>
+            <div class="legal-card">
+                <span class="legal-tag">RGPD</span>
+                <h4>Protection des données</h4>
+                <p>Une entreprise victime d'une attaque de phishing ayant entraîné une <strong>fuite de données personnelles</strong> est tenue de la notifier à la CNIL sous 72h. Elle peut être sanctionnée si ses mesures de sécurité étaient insuffisantes.</p>
+            </div>
+            <div class="legal-card">
+                <span class="legal-tag">NIS 2 (2024)</span>
+                <h4>Directive européenne</h4>
+                <p>La directive NIS 2 impose aux <strong>entités essentielles et importantes</strong> de mettre en place des mesures de cybersécurité renforcées, incluant la gestion des risques liés au phishing, sous peine de lourdes sanctions financières.</p>
+            </div>
+        </div>
+
+        <!-- PROS / CONS -->
+        <div class="section-label">Bilan</div>
+        <h2 class="section-heading">Pourquoi le phishing persiste ?</h2>
+        <div class="pros-cons-grid">
+            <div class="pros-box">
+                <h4>Ce qui le rend si efficace</h4>
+                <ul class="check-list">
+                    <li>Exploite la psychologie humaine : urgence, peur, curiosité</li>
+                    <li>Faible coût pour l'attaquant, retour sur investissement élevé</li>
+                    <li>Difficile à bloquer à 100% — la faille est humaine, pas technique</li>
+                    <li>L'IA permet de générer des milliers de messages personnalisés automatiquement</li>
+                    <li>Les deepfakes rendent les appels et vidéos indétectables à l'œil nu</li>
+                    <li>Peut contourner les solutions de sécurité les plus avancées</li>
+                </ul>
+            </div>
+            <div class="cons-box">
+                <h4>Ce qui le limite & le combat</h4>
+                <ul class="check-list">
+                    <li>La MFA bloque l'accès même avec un mot de passe volé</li>
+                    <li>Les solutions EDR et anti-spam détectent les patterns connus</li>
+                    <li>Les simulations de phishing sensibilisent efficacement les équipes</li>
+                    <li>Les passkeys rendent le vol de mot de passe inutile par conception</li>
+                    <li>La coopération internationale renforce les poursuites judiciaires</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- CONCLUSION -->
+        <div class="conclusion-box">
+            <div class="section-label">Conclusion & Analyse</div>
+            <h2>La meilleure faille, c'est toujours l'humain</h2>
+            <p>
+                Ma veille démontre que le phishing est une menace qui a su évoluer avec son temps. De simples e-mails grossiers des années 90 aux attaques pilotées par intelligence artificielle d'aujourd'hui, il reste la cybermenace numéro un dans le monde — non pas parce que les outils manquent, mais parce qu'il exploite une vulnérabilité qu'on ne peut pas patcher : la psychologie humaine.
+            </p>
+            <p>
+                La bonne nouvelle, c'est que les solutions existent : authentification multi-facteurs, sensibilisation des équipes, passkeys, protocoles d'e-mail robustes. L'enjeu n'est pas technologique — c'est une question de culture de cybersécurité à tous les niveaux, de l'individu à l'entreprise.
+            </p>
+            <div class="conclusion-stats">
+                <div class="c-stat">
+                    <div class="c-stat-value">36%</div>
+                    <div class="c-stat-label">des failles de données liées au phishing</div>
+                </div>
+                <div class="c-stat">
+                    <div class="c-stat-value">30 ans</div>
+                    <div class="c-stat-label">d'existence et toujours la menace n°1</div>
+                </div>
+                <div class="c-stat">
+                    <div class="c-stat-value">IA</div>
+                    <div class="c-stat-label">nouvelle frontière des attaques en 2024-2025</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOURCES -->
+        <div class="section-label">Méthodologie</div>
+        <h2 class="section-heading">Sources & Outils de veille</h2>
+        <div class="sources-wrapper">
+            <p><strong>Outils utilisés :</strong> Alertes Google, CERT-FR (alertes hebdomadaires), cybermalveillance.gouv.fr, rapports annuels de cybersécurité (Verizon DBIR, ANSSI), presse spécialisée (LeMagIT, ZDNet, The Hacker News).</p>
+            <p><strong>Sources consultées :</strong></p>
+            <div class="source-links">
+                <a href="https://www.cert.ssi.gouv.fr/" target="_blank" class="source-link">CERT-FR</a>
+                <a href="https://www.cybermalveillance.gouv.fr/" target="_blank" class="source-link">Cybermalveillance.gouv.fr</a>
+                <a href="https://www.verizon.com/business/resources/reports/dbir/" target="_blank" class="source-link">Verizon DBIR 2024</a>
+                <a href="https://www.ssi.gouv.fr/" target="_blank" class="source-link">ANSSI</a>
+                <a href="https://www.phishing.org/" target="_blank" class="source-link">Phishing.org</a>
+                <a href="https://thehackernews.com/" target="_blank" class="source-link">The Hacker News</a>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <p><strong>Portfolio</strong></p>
+                <p>Chaque projet représente mon investissement, mes compétences et ma volonté de progresser.</p>
+                <p style="margin-top: 20px;"><strong>Contact :</strong> +33 7 45 93 27 97</p>
+                <p><strong>Mail :</strong> abdoumirna756@gmail.com</p>
+            </div>
+            <p class="footer-text">© 2026 Abdou Mirna — Veille Cybersécurité · Le Phishing</p>
+        </div>
+    </footer>
+
+</body>
+</html>
