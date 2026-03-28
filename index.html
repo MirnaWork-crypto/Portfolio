@@ -156,50 +156,41 @@
             background: var(--black);
         }
 
-        /* ACCUEIL PAGE */
+        /* ACCUEIL PAGE - CENTERED VERSION */
         .accueil-hero {
             min-height: 100vh;
-            padding: 0 80px;
-            padding-top: 150px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
+            display: flex;
             align-items: center;
+            justify-content: center;
+            padding: 150px 80px 80px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
         }
 
         .hero-content h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(50px, 8vw, 90px);
+            font-size: clamp(42px, 6vw, 72px);
             font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 30px;
+            line-height: 1.15;
+            margin-bottom: 40px;
+            letter-spacing: -1.5px;
         }
 
         .hero-content p {
-            font-size: 18px;
-            line-height: 1.9;
+            font-size: clamp(16px, 1.5vw, 19px);
+            line-height: 1.85;
             color: var(--gray-lighter);
-            margin-bottom: 40px;
+            margin-bottom: 25px;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .hero-image {
-            width: 100%;
-            height: 700px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(100%);
-            transition: all 0.6s ease;
-        }
-
-        .hero-image:hover img {
-            filter: grayscale(0%);
-            transform: scale(1.05);
+        .hero-content p:last-of-type {
+            margin-bottom: 45px;
         }
 
         .cta-button {
@@ -208,15 +199,41 @@
             background: var(--black);
             color: var(--white);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 14px;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            transition: all 0.4s ease;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid var(--black);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            cursor: pointer;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: var(--white);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: -1;
         }
 
         .cta-button:hover {
-            background: var(--gray-lighter);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-button:hover::before {
+            width: 300%;
+            height: 300%;
         }
 
         /* BTS SIO PAGE - MODERN DESIGN */
@@ -852,19 +869,174 @@
             color: var(--gray-light);
         }
 
+        /* CERTIFICATION PAGE */
+        .certification-intro {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 80px;
+        }
+
+        .certification-intro p {
+            font-size: 18px;
+            line-height: 1.9;
+            color: var(--gray-lighter);
+        }
+
+        .certification-category {
+            margin-bottom: 80px;
+        }
+
+        .category-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .category-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .cert-card {
+            background: var(--white);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            padding: 40px 30px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--black);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border-color: var(--black);
+        }
+
+        .cert-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .cert-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .cert-card h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--black);
+        }
+
+        .cert-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--gray-lighter);
+            margin-bottom: 15px;
+        }
+
+        .cert-provider {
+            display: inline-block;
+            padding: 6px 15px;
+            background: var(--gray-dark);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        .cert-pix {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            border: 2px solid var(--black);
+            padding: 50px 40px;
+        }
+
+        .cert-pix h4 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .cert-pix .cert-badge {
+            display: inline-block;
+            padding: 10px 25px;
+            background: var(--black);
+            color: var(--white);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 20px 0;
+        }
+
+        .cert-pix-button {
+            display: inline-block;
+            padding: 15px 35px;
+            background: var(--black);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            border: 2px solid var(--black);
+            margin-top: 15px;
+        }
+
+        .cert-pix-button:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             nav, section, footer { padding-left: 40px; padding-right: 40px; }
-            .accueil-hero { grid-template-columns: 1fr; }
-            .hero-image { height: 500px; }
+            .accueil-hero { padding: 120px 40px 60px; }
+            .hero-content h1 { font-size: clamp(36px, 7vw, 56px); }
             .veille-cards-container { grid-template-columns: 1fr; gap: 40px; }
             .parcours-cards-container { grid-template-columns: 1fr; gap: 40px; }
             .bts-options-container { grid-template-columns: 1fr; gap: 40px; }
             .projets-grid { grid-template-columns: 1fr; gap: 40px; }
+            .certifications-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
         }
 
         @media (max-width: 768px) {
             .nav-menu { display: none; }
+            .accueil-hero { padding: 100px 30px 50px; }
+            .hero-content h1 { font-size: 36px; margin-bottom: 30px; }
+            .hero-content p { font-size: 16px; margin-bottom: 20px; }
+            .hero-content p:last-of-type { margin-bottom: 35px; }
+            .cta-button { width: 100%; max-width: 300px; padding: 16px 35px; font-size: 13px; }
             .form-row { grid-template-columns: 1fr; }
             .footer-content { flex-direction: column; gap: 30px; text-align: center; }
             .veille-intro-content { padding: 40px 30px; }
@@ -876,31 +1048,10 @@
             .bts-intro-content { padding: 40px 30px; }
             .bts-option-card { padding: 40px 30px; }
             .projet-card-content { padding: 30px 25px; }
+            .certifications-grid { grid-template-columns: 1fr; gap: 25px; }
+            .cert-card { padding: 35px 25px; }
+            .cert-pix { padding: 40px 30px; }
         }
-
-
-        .parcours-card-image-contain {
-    object-fit: contain !important;
-    background: var(--gray-dark);
-    padding: 20px;
-}
-
-.parcours-card:hover .parcours-card-image-contain {
-    transform: none;
-}
-
-
-
-.projet-card-image-contain {
-    object-fit: contain !important;
-    background: var(--gray-dark);
-    padding: 20px;
-}
-
-.projet-card:hover .projet-card-image-contain {
-    transform: none;
-}
-
     </style>
 </head>
 <body>
@@ -913,7 +1064,8 @@
             <li><a onclick="showPage('bts-sio')" class="nav-link">BTS SIO</a></li>
             <li><a onclick="showPage('parcours')" class="nav-link">Parcours professionnel</a></li>
             <li><a onclick="showPage('projet')" class="nav-link">Projets</a></li>
-            <li><a onclick="showPage('veille')" class="nav-link">Veilles</a></li>
+            <li><a onclick="showPage('certification')" class="nav-link">Certifications</a></li>
+            <li><a onclick="showPage('veille')" class="nav-link">Veille</a></li>
             <li><a onclick="showPage('contact')" class="nav-link">Contact</a></li>
         </ul>
     </nav>
@@ -929,10 +1081,7 @@
                 <p>
                     Cette formation me permet d'acquérir des compétences solides en développement de logiciels et en gestion de projets informatiques.
                 </p>
-                <a href="#" class="cta-button" onclick="showPage('projet')">Découvrir mes projets</a><br><br><br><br><br>
-            </div>
-            <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800" alt="Abdou Mirna">
+                <a href="#" class="cta-button" onclick="showPage('projet')">Découvrir mes projets</a>
             </div>
         </div>
     </div>
@@ -1020,40 +1169,43 @@
             </div>
 
             <div class="parcours-cards-container">
-<!-- Stage ARCV Card - AVEC LIEN -->
-<div class="parcours-card">
-    <a href="Projets/Stage_01.html" style="display: block; text-decoration: none; color: inherit;">
-        <img class="parcours-card-image parcours-card-image-contain" src="https://horizons-cdn.hostinger.com/d5564037-9b22-4e1e-9f0c-2fd1f8c09fe6/dced77d3ca786b1fde1f08072b0ac283.png" alt="ARCV">
-    </a>
-    <div class="parcours-card-content">
-        <p class="parcours-number">Stage 01</p>
-        <h3>ACRCV</h3>
-        <p>
-            J'ai obtenu mon stage chez l'ACRCV (Association Culturelle des ressortissants Comoriens de Villiers-sur-Marne) grâce à un ami à mon père qui m'a recommandé. Pendant mon stage, j'ai travaillé sur la création et la refonte du site web pour améliorer son design et son utilisation ce qui m'a permis d'intégrer une structure engagée dans la communauté.
-        </p>
-        <div class="parcours-buttons">
-            <a href="#" class="parcours-btn parcours-btn-primary">Note de synthèse</a>
-        </div>
-    </div>
-</div>
+                <!-- Stage ARCV Card -->
+                <div class="parcours-card">
+                    <a href="Stages/Stage_01.html" style="display: block; text-decoration: none; color: inherit;">
+                        <img class="parcours-card-image" src="https://horizons-cdn.hostinger.com/d5564037-9b22-4e1e-9f0c-2fd1f8c09fe6/dced77d3ca786b1fde1f08072b0ac283.png" alt="ARCV" style="object-fit: contain; background: var(--gray-dark);">
+                    </a>
+                    <div class="parcours-card-content">
+                        <p class="parcours-number">Stage 01</p>
+                        <h3>ACRCV</h3>
+                        <p>
+                            J'ai obtenu mon stage chez l'ACRCV (Association Culturelle des ressortissants Comoriens de Villiers-sur-Marne) grâce à un ami à mon père qui m'a recommandé. Pendant mon stage, j'ai travaillé sur la création et la refonte du site web pour améliorer son design et son utilisation ce qui m'a permis d'intégrer une structure engagée dans la communauté.
+                        </p>
+                        <div class="parcours-buttons">
+                            <a href="Stages/Stage_01.html" class="parcours-btn parcours-btn-primary">Voir les détails</a>
+                            <a href="#" class="parcours-btn parcours-btn-secondary">Note de synthèse</a>
+                        </div>
+                    </div>
+                </div>
 
-<!-- Stage Restaurant Card -->
-<div class="parcours-card">
-    <a href="Projets/Stage_02.html" style="display: block; text-decoration: none; color: inherit;">
-        <img class="parcours-card-image" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800" alt="Restaurant">
-    </a>
-    <div class="parcours-card-content">
-        <p class="parcours-number">Stage 02</p>
-        <h3>Robigus Restaurant</h3>
-        <p>
-            J'ai réalisé mon second stage chez Robigus Restaurant grâce à un camarade de classe, dont le père est le propriétaire. Durant ce stage, j'ai conçu un site web pour le restaurant dans le but d'améliorer son image et sa présence sur internet.
-        </p>
-        <div class="parcours-buttons">
-            <a href="#" class="parcours-btn parcours-btn-primary">Note de synthèse</a>
-            <a href="#" class="parcours-btn parcours-btn-secondary">Cahier des charges</a>
-        </div>
-    </div>
-</div>
+                <!-- Stage Restaurant Card -->
+                <div class="parcours-card">
+                    <a href="Stages/Stage_02.html" style="display: block; text-decoration: none; color: inherit;">
+                        <img class="parcours-card-image" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800" alt="Restaurant">
+                    </a>
+                    <div class="parcours-card-content">
+                        <p class="parcours-number">Stage 02</p>
+                        <h3>Robigus Restaurant</h3>
+                        <p>
+                            J'ai réalisé mon second stage chez Robigus Restaurant grâce à un camarade de classe, dont le père est le propriétaire. Durant ce stage, j'ai conçu un site web pour le restaurant dans le but d'améliorer son image et sa présence sur internet.
+                        </p>
+                        <div class="parcours-buttons">
+                            <a href="Stages/Stage_02.html" class="parcours-btn parcours-btn-primary">Voir les détails</a>
+                            <a href="#" class="parcours-btn parcours-btn-secondary">Note de synthèse</a>
+                            <a href="pdf/cahier des charges mirna 2026.pdf" class="parcours-btn parcours-btn-secondary">Cahier des charges</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </section>
 
@@ -1084,28 +1236,13 @@
             </div>
 
             <div class="projets-grid">
-                <!-- Projet 1: Maison des Ligues -->
+                <!-- Projet 1: Aventures Alpines -->
                 <div class="projet-card">
-            <img class="projet-card-image projet-card-image-contain" src="https://romguillon4.wordpress.com/wp-content/uploads/2013/09/mdl.png" alt="Maison des Ligues">
+                    <a href="Projets/Projets_01.html" style="display: block; text-decoration: none; color: inherit;">
+                        <img class="projet-card-image" src="https://jeromeobiols.com/wordpress/wp-content/uploads/photo-montagne-vallee-blanche-chamonix-mont-blanc.jpg" alt="Aventures Alpines">
+                    </a>
                     <div class="projet-card-content">
                         <span class="projet-tag">Projet 01</span>
-                        <h3>Maison des Ligues</h3>
-                        <p>
-                            Développement d'une plateforme de gestion pour la Maison des Ligues, permettant la coordination des activités sportives et la gestion des membres.
-                        </p>
-                        <div class="projet-tech">
-                            <span class="tech-badge">HTML</span>
-                            <span class="tech-badge">CSS</span>
-                        </div>
-                        <a href="#" class="projet-link">Voir le projet</a>
-                    </div>
-                </div>
-
-                <!-- Projet 2: Aventures Alpines -->
-                <div class="projet-card">
-                    <img class="projet-card-image" src="https://jeromeobiols.com/wordpress/wp-content/uploads/photo-montagne-vallee-blanche-chamonix-mont-blanc.jpg" alt="Aventures Alpines">
-                    <div class="projet-card-content">
-                        <span class="projet-tag">Projet 02</span>
                         <h3>Aventures Alpines</h3>
                         <p>
                             Création d'un site web pour une agence de voyages spécialisée dans les aventures en montagne, avec système de réservation intégré.
@@ -1116,15 +1253,17 @@
                             <span class="tech-badge">JavaScript</span>
                             <span class="tech-badge">MySQL</span>
                         </div>
-                        <a href="#" class="projet-link">Voir le projet</a>
+                        <a href="Projets/Projet_Aventures_Alpines.html" class="projet-link">Voir le projet</a>
                     </div>
                 </div>
 
-                <!-- Projet 3: JavaStock -->
+                <!-- Projet 2: JavaStock -->
                 <div class="projet-card">
-                    <img class="projet-card-image" src="https://e-solution.com/storage/component/24-10/wsNrsLA4PCx9lInWWMXyWKj7TonC31zsQwXX2oQA.png" alt="JavaStock">
+                    <a href="Projets/Projets_02.html" style="display: block; text-decoration: none; color: inherit;">
+                        <img class="projet-card-image" src="https://e-solution.com/storage/component/24-10/wsNrsLA4PCx9lInWWMXyWKj7TonC31zsQwXX2oQA.png" alt="JavaStock">
+                    </a>
                     <div class="projet-card-content">
-                        <span class="projet-tag">Projet 03</span>
+                        <span class="projet-tag">Projet 02</span>
                         <h3>JavaStock</h3>
                         <p>
                             Application de gestion de stock développée en Java, permettant le suivi des inventaires, des commandes et des fournisseurs en temps réel.
@@ -1134,7 +1273,7 @@
                             <span class="tech-badge">PostGresSQL</span>
                             <span class="tech-badge">JavaSwing</span>
                         </div>
-                        <a href="#" class="projet-link">Voir le projet</a>
+                        <a href="Projets/Projets_02.html" class="projet-link">Voir le projet</a>
                     </div>
                 </div>
             </div>
@@ -1154,10 +1293,156 @@
         </footer>
     </div>
 
+    <!-- PAGE CERTIFICATIONS -->
+    <div id="certification" class="page">
+        <section>
+            <h1 class="section-title">Mes Certifications</h1>
+            
+            <div class="certification-intro">
+                <p>
+                    Tout au long de ma formation, j'ai suivi plusieurs certifications reconnues pour renforcer mes compétences techniques et théoriques. Ces formations couvrent le développement logiciel, la cybersécurité, la gestion de projet et l'intelligence artificielle.
+                </p>
+            </div>
+
+<!-- Développement & Versioning -->
+<div class="certification-category">
+    <div class="category-header">
+        <h2 class="category-title">Développement & Versioning</h2>
+    </div>
+    <div class="certifications-grid">
+        <div class="cert-card">
+            <h4>Git & GitHub</h4>
+            <p>Gérez du code avec Git et GitHub</p>
+            <span class="cert-provider">OpenClassrooms</span>
+        </div>
+        <div class="cert-card">
+            <h4>Qualité Logicielle</h4>
+            <p>Initiez-vous au test et à la qualité logiciel</p>
+            <span class="cert-provider">OpenClassrooms</span>
+        </div>
+        <div class="cert-card">
+            <h4>Développement Sécurisé</h4>
+            <p>Bonnes pratiques de codage et sécurité</p>
+            <span class="cert-provider">OpenClassrooms</span>
+        </div>
+    </div>
+</div>
+
+            <!-- Cybersécurité -->
+            <div class="certification-category">
+                <div class="category-header">
+                    <div class="category-icon"></div>
+                    <h2 class="category-title">Cybersécurité</h2>
+                </div>
+                <div class="certifications-grid">
+                    <div class="cert-card">
+                        <div class="cert-icon"></div>
+                        <h4>Sécurisez vos applications</h4>
+                        <p>Apprendre les réflexes de sécurité en développement</p>
+                        <span class="cert-provider">OpenClassrooms</span>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-icon"></div>
+                        <h4>Risques SI</h4>
+                        <p>Analysez et gérez des risques SI</p>
+                        <span class="cert-provider">OpenClassrooms</span>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-icon"></div>
+                        <h4>Sécurité Numérique</h4>
+                        <p>Découvrez les bases de la sécurité numérique</p>
+                        <span class="cert-provider">OpenClassrooms</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gestion de Projet & Méthode -->
+            <div class="certification-category">
+                <div class="category-header">
+                    <div class="category-icon"></div>
+                    <h2 class="category-title">Gestion de Projet & Méthode</h2>
+                </div>
+                <div class="certifications-grid">
+                    <div class="cert-card">
+                        <div class="cert-icon"></div>
+                        <h4>Méthode Agile</h4>
+                        <p>Initiez-vous à la gestion de projet agile</p>
+                        <span class="cert-provider">OpenClassrooms</span>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-icon"></div>
+                        <h4>Gestion de projet</h4>
+                        <p>Gérez votre projet informatique facilement</p>
+                        <span class="cert-provider">OpenClassrooms</span>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-icon"></div>
+                        <h4>Documentation Technique</h4>
+                        <p>Écrivez la documentation de votre projet</p>
+                        <span class="cert-provider">OpenClassrooms</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Intelligence Artificielle -->
+            <div class="certification-category">
+                <div class="category-header">
+                    <div class="category-icon"></div>
+                    <h2 class="category-title">Intelligence Artificielle</h2>
+                </div>
+                <div class="certifications-grid">
+                    <div class="cert-card">
+                        <div class="cert-icon"></div>
+                        <h4>Deep Learning</h4>
+                        <p>Initiez-vous au Deep Learning</p>
+                        <span class="cert-provider">OpenClassrooms</span>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-icon"></div>
+                        <h4>Objectif IA</h4>
+                        <p>Initiez-vous à l'intelligence artificielle</p>
+                        <span class="cert-provider">OpenClassrooms</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certification PIX -->
+            <div class="certification-category">
+                <div class="category-header">
+                    <div class="category-icon"></div>
+                    <h2 class="category-title">Certification Officielle</h2>
+                </div>
+                <div style="max-width: 700px; margin: 0 auto;">
+                    <div class="cert-card cert-pix">
+                        <div class="cert-icon"></div>
+                        <h4>Certification PIX</h4>
+                        <p>Évaluation et certification des compétences numériques (Reconnu par l'État)</p>
+                        <span class="cert-badge">Certifié 2026</span>
+                        <br>
+                        <a href="pdf/certification-pix.pdf" class="cert-pix-button">Consulter le certificat</a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p><strong>Portfolio</strong></p>
+                    <p>Chaque certification représente mon engagement dans l'apprentissage continu.</p>
+                    <p style="margin-top: 20px;"><strong>Contact:</strong> +33 7 45 93 27 97</p>
+                    <p><strong>Mail:</strong> abdoumirna756@gmail.com</p>
+                </div>
+                <p class="footer-text">© 2026 Abdou Mirna - Portfolio</p>
+            </div>
+        </footer>
+    </div>
+
     <!-- PAGE VEILLE -->
     <div id="veille" class="page">
         <section>
-            <h1 class="section-title">Veilles</h1>
+            <h1 class="section-title">Veille</h1>
 
             <div class="veille-intro">
                 <div class="veille-intro-content">
@@ -1201,10 +1486,10 @@
                             </svg>
                         </div>
                         <h3>Veille Cybersécurité</h3>
-                        <p>Restez informé des dernières menaces, vulnérabilités et bonnes pratiques en matière de sécurité informatique.</p>
+                        <p>Le Phishing — De l'hameçon artisanal à l'arme numérique de masse. Découvrez l'évolution de cette menace de 1990 à aujourd'hui.</p>
                         <div class="veille-buttons">
                             <a href="#" class="veille-btn veille-btn-primary">Document PDF</a>
-                            <a href="#" class="veille-btn veille-btn-secondary">Consulter</a>
+                            <a href="Veilles/Veille_Phishing.html" class="veille-btn veille-btn-secondary">Consulter</a>
                         </div>
                     </div>
                 </div>
@@ -1287,8 +1572,30 @@
                 event.target.classList.add('active');
             }
             
+            // Sauvegarder la page active
+            localStorage.setItem('currentPage', pageId);
+            
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // Restaurer la page au chargement
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedPage = localStorage.getItem('currentPage');
+            if (savedPage && document.getElementById(savedPage)) {
+                document.querySelectorAll('.page').forEach(page => {
+                    page.classList.remove('active');
+                });
+                document.getElementById(savedPage).classList.add('active');
+                
+                // Activer le lien de navigation correspondant
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('onclick') && link.getAttribute('onclick').includes(savedPage)) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>
