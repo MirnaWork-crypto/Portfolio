@@ -269,6 +269,111 @@
             color: var(--black);
         }
 
+        /* ─── Gallery Section ─── */
+        .gallery-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 60px 90px;
+        }
+
+        .gallery-header {
+            display: flex;
+            align-items: baseline;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .gallery-header .section-number {
+            margin-bottom: 0;
+        }
+
+        .gallery-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item:first-child {
+            grid-row: span 1;
+        }
+
+        .gallery-item-inner {
+            position: relative;
+            width: 100%;
+            height: 340px;
+            overflow: hidden;
+        }
+
+        .gallery-item-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: filter 0.7s ease, transform 0.7s ease;
+            display: block;
+        }
+
+        .gallery-item:hover .gallery-item-inner img {
+            filter: grayscale(0%);
+            transform: scale(1.06);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px;
+            background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%);
+            transform: translateY(6px);
+            opacity: 0;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-item-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--white);
+        }
+
+        .gallery-item-caption {
+            font-size: 13px;
+            color: rgba(255,255,255,0.72);
+            margin-top: 4px;
+        }
+
+        .gallery-counter {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--white);
+            background: var(--black);
+            padding: 5px 10px;
+        }
+
         /* Features Section */
         .features-section {
             background: var(--gray-dark);
@@ -410,10 +515,18 @@
             .features-grid {
                 grid-template-columns: 1fr;
             }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .gallery-grid .gallery-item:last-child {
+                grid-column: span 2;
+            }
         }
 
         @media (max-width: 768px) {
-            nav, .hero, .image-hero, .features-section, footer {
+            nav, .hero, .image-hero, .gallery-section, .features-section, footer {
                 padding-left: 30px;
                 padding-right: 30px;
             }
@@ -438,6 +551,18 @@
 
             .image-wrapper {
                 height: 50vh;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid .gallery-item:last-child {
+                grid-column: span 1;
+            }
+
+            .gallery-item-inner {
+                height: 260px;
             }
         }
     </style>
@@ -493,8 +618,6 @@
                     <span class="tech-tag">Java</span>
                     <span class="tech-tag">JavaSwing</span>
                     <span class="tech-tag">PostgreSQL</span>
-               
-                  
                 </div>
             </div>
         </aside>
@@ -526,11 +649,61 @@
                     <li>Gérer les erreurs et valider les données utilisateur</li>
                 </ul>
             </div>
-
-          
         </main>
     </div>
 
+    <!-- ─── Gallery Section ─── -->
+    <section class="gallery-section">
+        <div class="gallery-header">
+            <p class="section-number">03 — Galerie</p>
+            <h2>Aperçus du projet</h2>
+        </div>
+        <div class="gallery-grid">
+
+            <div class="gallery-item">
+                <div class="gallery-item-inner">
+                    <img
+                        src="../images/JavaStocks/javastock_image.png"
+                        alt="Dashboard JavaStock"
+                    >
+                    <div class="gallery-counter">01</div>
+                    <div class="gallery-item-overlay">
+                        <p class="gallery-item-label">Dashboard</p>
+                        <p class="gallery-item-caption">Vue d'ensemble de l'inventaire</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="gallery-item-inner">
+                    <img
+                        src="../images/JavaStocks/Fournisseur.png"
+                        alt="Gestion des commandes"
+                    >
+                    <div class="gallery-counter">02</div>
+                    <div class="gallery-item-overlay">
+                        <p class="gallery-item-label">Commandes</p>
+                        <p class="gallery-item-caption">Module de gestion des commandes</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="gallery-item-inner">
+                    <img
+                        src="../images/JavaStocks/Courreur.png"
+                        alt="Base de données PostgreSQL"
+                    >
+                    <div class="gallery-counter">03</div>
+                    <div class="gallery-item-overlay">
+                        <p class="gallery-item-label">Base de données</p>
+                        <p class="gallery-item-caption">Architecture PostgreSQL & JDBC</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
 
     <footer>
         <div class="footer-content">
